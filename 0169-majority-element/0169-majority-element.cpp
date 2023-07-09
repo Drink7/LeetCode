@@ -25,17 +25,15 @@ public:
         // TC: O(n)
         // SC: O(1)
         int current = 0;
-        int counter = 0;
+        int count = 0;
         for (auto const& num : nums) {
-            if (counter == 0) {
-                current = num;
-                counter++;
+            if (current == num) {
+                count++;
+            } else if (count > 0) {
+                count--;
             } else {
-                if (current == num) {
-                    counter++;
-                } else {
-                    counter--;
-                }
+                current = num;
+                count = 1;
             }
         }
         return current;
