@@ -1,8 +1,9 @@
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        // Hash Table
         // TC: O(n)
-        // SC: O(1)
+        // SC: O(n)
         unordered_set<int> nums1Set, intersecSet;
         vector<int> ans;
         for (auto const& num : nums1) {
