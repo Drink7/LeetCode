@@ -21,7 +21,8 @@ public:
         return maxVal;
         */
 
-        // Boyer-Moore Algo
+        // In place (Boyer-Moore Majority Vote Algorithm)
+        // The majority element is the element that appears more than ⌊n / 2⌋
         // TC: O(n)
         // SC: O(1)
         int current = 0;
