@@ -1,7 +1,7 @@
 class Solution {
 public:
     int romanToInt(string s) {
-        // Traverse from right to left
+        // Traverse
         // TC: O(n)
         // SC: O(n)
         int val = 0;
