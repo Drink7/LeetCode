@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool divisorGame(int n) {
+        /*
         // Alice win bob lose
         // Alice lose bob win
         // dynamic programming
@@ -17,5 +18,10 @@ public:
             }
         }
         return dp[n];
+        */
+        // Pure Math
+        // TC: O(1)
+        // SC: O(1)
+        return n % 2 == 0;
     }
 };
