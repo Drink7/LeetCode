@@ -18,7 +18,7 @@ public:
         // Prefix sum to get the minimum value
         // Space optimization
         // TC: O(n)
-        // SC: O(n)
+        // SC: O(1)
         int n = nums.size();
         int prefixSum = 0;
         int minVal = 0;
