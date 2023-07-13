@@ -6,7 +6,7 @@ public:
         // SC: O(n)
         int n = nums.size();
         vector<int> prefixSum(nums.begin(), nums.end());
-        int minVal = prefixSum[0];
+        int minVal = nums[0];
         for (int i = 1; i < n; i++) {
             prefixSum[i] += prefixSum[i - 1];
             minVal = min(minVal, prefixSum[i]);
