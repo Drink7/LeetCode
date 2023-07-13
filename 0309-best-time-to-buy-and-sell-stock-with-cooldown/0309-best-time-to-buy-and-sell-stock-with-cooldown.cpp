@@ -3,9 +3,12 @@ public:
     int maxProfit(vector<int>& prices) {
         // state machine (cooldown / sell / buy)
         // buy means profit - price, sell means profit + price
-        // state1: cooldown
-        // state2: buy
-        // state3 : sell
+        // state1: able to buy
+        // state1 -> state1 or state1 -> state2
+        // state2: able to sell
+        // state2 -> state2 or state2 -> state3
+        // state3 : cooldown then able to buy next day
+         // state3 -> state1
         // TC: O(n)
         // SC: O(n)
         int n = prices.size();
