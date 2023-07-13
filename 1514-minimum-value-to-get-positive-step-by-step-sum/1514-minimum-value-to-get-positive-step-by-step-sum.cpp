@@ -14,6 +14,7 @@ public:
         }
         return (minVal <= 0) ? 1 - minVal : 1;
         */
+
         // Prefix sum to get the minimum value
         // Space optimization
         // TC: O(n)
