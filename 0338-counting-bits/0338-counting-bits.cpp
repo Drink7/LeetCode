@@ -6,7 +6,7 @@ public:
         // >> 1: right shift 1 is to divide by 2
         // dynamic programming
         // TC: O(nlogn)
-        // SC: O(n)
+        // SC: O(1)
         vector<int> result;
         for (int i = 0; i <= n; i++) {
             int sum = 0;
