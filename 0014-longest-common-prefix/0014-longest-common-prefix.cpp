@@ -9,7 +9,7 @@ public:
         string base = strs[0];
         int n = strs.size();
         for (int i = 1; i < n; i++) {
-            while (strs[i].find(base) == string::npos || strs[i].find(base) != 0) {
+            while (strs[i].find(base) != 0) {
                 base = base.substr(0, base.size() - 1);
             }
         }
