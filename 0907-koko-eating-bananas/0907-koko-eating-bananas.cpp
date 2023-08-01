@@ -4,7 +4,6 @@ public:
         // Check h need to larger or equal to piles length
         // sort the piles, choose the speed bewteen the smallest piles size and the largest piles size
         // minimum speed -> as large as hour 
-        // find the total hour which first equal to the h
         // TC: O(nlogn)
         // SC: O(1)
         sort(piles.begin(), piles.end());
