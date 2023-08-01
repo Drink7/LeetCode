@@ -1,6 +1,7 @@
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
+        /*
         // we can not sort
         // get the mid and go to the larger side
         // TC: O(logn)
@@ -35,6 +36,26 @@ public:
                         left = mid + 1;
                     }
                 }
+            }
+        }
+        return -1;
+        */
+
+        // More elegant
+        // get the mid and go to the larger side
+        // TC: O(logn)
+        // SC: O(1)
+        int n = nums.size();
+        int left = 0;
+        int right = n - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (mid + 1 < n && nums[mid] < nums[mid + 1]) {
+                left = mid + 1;
+            } else if (mid - 1 >= 0 && nums[mid - 1] > nums[mid]) {
+                right = mid - 1;
+            } else {
+                return mid;
             }
         }
         return -1;
