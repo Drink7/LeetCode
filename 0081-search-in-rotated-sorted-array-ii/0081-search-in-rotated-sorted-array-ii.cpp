@@ -18,6 +18,7 @@ public:
                 right--;
             } else if (nums[mid] > nums[right]) {
                 // Array must be rotated
+                // check left part
                 if (nums[left] <= target && target < nums[mid]) {
                     right = mid - 1;
                 } else {
@@ -25,6 +26,7 @@ public:
                 }
             } else {
                 // Array might be rotated
+                // check right part
                 if (nums[mid] < target && target <= nums[right]) {
                     left = mid + 1;
                 } else {
