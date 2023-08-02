@@ -2,7 +2,7 @@ class Solution {
 public:
     int arrangeCoins(int n) {
         // 1 + 2 + 3 + ... + m <= n
-        // TC: O(nlogn)
+        // TC: O(logn)
         // SC: O(1)
         int left = 1;
         int right = n;
