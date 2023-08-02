@@ -21,13 +21,14 @@ public:
             } else {
                 if (nums[mid - 1] == nums[mid]) {
                     if ((mid - left) % 2 == 0) {
-                        // add additional minus one for the mid - 1 value
+                        // add additional minus one for skip the mid - 1 value
                         right = mid - 1 - 1;
                     } else {
                         left = mid + 1;
                     }
                 } else {
                     if ((right - mid) % 2 == 0) {
+                        // add additional plus one for skip the mid + 1 value
                         left = mid + 1 + 1;
                     } else {
                         right = mid - 1;
