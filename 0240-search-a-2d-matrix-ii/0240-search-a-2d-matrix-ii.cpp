@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        /*
         // Binary Search way
         // TC: O(mlogn)
         // SC: O(1)
@@ -22,6 +23,21 @@ public:
                 }
             } else {
                 break;
+            }
+        }
+        return false;
+        */
+
+        // Rule out each row or col by checking top right
+        int row = 0;
+        int col = matrix[0].size() - 1;
+        while (row < matrix.size() && col >= 0) {
+            if (matrix[row][col] == target) {
+                return true;
+            } else if (matrix[row][col] > target) {
+                col--;
+            } else {
+                row++;
             }
         }
         return false;
