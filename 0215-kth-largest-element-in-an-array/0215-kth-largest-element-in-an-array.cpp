@@ -1,7 +1,7 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        // Priority Queue
+        // MaxHeap Priority Queue
         // TC: O(nlogn + k)
         // SC: O(n)
         priority_queue<int> maxHeap;
