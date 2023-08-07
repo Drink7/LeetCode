@@ -10,8 +10,8 @@
  */
 class Solution {
 public:
-
     ListNode* mergeKLists(vector<ListNode*>& lists) {
+        /*
         // merge two list enhanced
         // TC: O(nk), n is lists number, k is average list count
         // SC: O(nk)
@@ -22,6 +22,24 @@ public:
         int n = lists.size();
         for (int i = 1; i < n; i++) {
             lists[0] = mergeTwoLists(lists[0], lists[i]);
+        }
+        return lists[0];
+        */
+
+        // Divide and conquer and merge
+        // TC: O(nk)
+        // SC: O(1)
+        if (lists.size() == 0) {
+            return nullptr;
+        }
+
+        int n = lists.size();
+        while (n > 1) {
+            int group = (n + 1) / 2;
+            for (int i = 0; i < group; i++) {
+                lists[i] = mergeTwoLists(lists[i * 2], (i * 2 + 1) < n ? lists[(i * 2) + 1] : nullptr);
+            }
+            n = group;
         }
         return lists[0];
     }
