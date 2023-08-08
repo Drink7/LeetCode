@@ -2,8 +2,8 @@ class Solution {
 public:
     string kthLargestNumber(vector<string>& nums, int k) {
         // Quick select
-        // TC: O(n)
-        // SC: O(1)
+        // TC: O(n^2)
+        // SC: O(n) call stack
         // find k-th largest, quick select would find k-th min
         //return quickSelect(nums, 0, nums.size() - 1, nums.size() - k);
         // Use STL
@@ -31,7 +31,7 @@ public:
     int partition(vector<string>& nums, int left, int right) {
         int i = left;
         for (int j = left; j < right; j++) {
-            if (strNumComparator(nums[j], nums[right])) {
+            if (!strNumComparator(nums[j], nums[right])) {
                 swap(nums[i], nums[j]);
                 i++;
             }
