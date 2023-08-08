@@ -7,31 +7,38 @@ public:
         // SC: O(1)
         int left = 0;
         int right = -1;
+        int maxVal = -1;
         for (auto const& num : arr) {
             if (num > right) {
                 right = num;
             }
         }
 
+        maxVal = right;
+
         while (left <= right) {
             int mid = left + (right - left) / 2;
             int midSum = calculateSum(arr, mid);
 
-            if (midSum == target) {
-                return mid;
-            } else if(midSum < target) {
-                left = mid + 1;
+            if (midSum <= target) {
+                if (mid == maxVal || calculateSum(arr, mid + 1) > target) {
+                    if (mid == maxVal) {
+                        return mid;
+                    }
+
+                    if (abs(midSum - target) <= abs(calculateSum(arr, mid + 1) - target)) {
+                        return mid;
+                    } else {
+                        return mid + 1;
+                    }
+                } else {
+                    left = mid + 1;
+                }
             } else {
                 right = mid - 1;
             }
         }
-
-        // at this point, the solution is either low or low - 1;
-        if (abs(calculateSum(arr, left) - target) < abs(calculateSum(arr, left - 1) - target)) {
-            return left;
-        } else {
-            return left - 1;
-        }
+        return -1;
     }
 
     int calculateSum(vector<int>& arr, int mid) {
