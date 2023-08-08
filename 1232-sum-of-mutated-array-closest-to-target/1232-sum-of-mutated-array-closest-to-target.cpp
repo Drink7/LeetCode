@@ -6,64 +6,31 @@ public:
         // TC: O(nlogn)
         // SC: O(1)
         int left = 0;
-        int maxVal = -1;
         int right = -1;
         for (auto const& num : arr) {
-            if (num > maxVal) {
-                maxVal = num;
+            if (num > right) {
+                right = num;
             }
         }
-
-        right = maxVal;
-
-        int lessSum = -1;
-        int lessNumber = -1;
 
         while (left <= right) {
             int mid = left + (right - left) / 2;
             int midSum = calculateSum(arr, mid);
 
-            if (midSum <= target) {
-                if (mid == maxVal || calculateSum(arr, mid + 1) > target) {
-                    lessSum = midSum;
-                    lessNumber = mid;
-                    break;
-                } else {
-                    left = mid + 1;
-                }
+            if (midSum == target) {
+                return mid;
+            } else if(midSum < target) {
+                left = mid + 1;
             } else {
                 right = mid - 1;
             }
         }
 
-        int greaterSum = -1;
-        int greaterNumber = -1;
-        left = 0;
-        right = maxVal;
-
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            int midSum = calculateSum(arr, mid);
-
-            if (midSum >= target) {
-                if (mid == 1 || calculateSum(arr, mid - 1) < target) {
-                    greaterSum = midSum;
-                    greaterNumber = mid;
-                    break;
-                } else {
-                    right = mid - 1;
-                }
-            } else {
-                left = mid + 1;
-            }
-        }
-
-        cout << "lessSum: " << lessSum << ", greaterSum: " << greaterSum << endl;
-        cout << "lessNumber: " << lessNumber << ", greaterNumber: " << greaterNumber << endl;
-        if (abs(lessSum - target) > abs(greaterSum - target)) {
-            return greaterNumber;
+        // at this point, the solution is either low or low - 1;
+        if (abs(calculateSum(arr, left) - target) < abs(calculateSum(arr, left - 1) - target)) {
+            return left;
         } else {
-            return lessNumber;
+            return left - 1;
         }
     }
 
