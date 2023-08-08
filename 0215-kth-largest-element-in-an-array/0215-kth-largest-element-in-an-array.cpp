@@ -19,7 +19,11 @@ public:
         // find k largest, quick select n - k large
         // TC: O(n)
         // SC: O(1)
-        return quickSelect(nums, 0, nums.size() - 1, nums.size() - k);
+        //return quickSelect(nums, 0, nums.size() - 1, nums.size() - k);
+
+        // STL nth_element used to find k-th smallest
+        nth_element(nums.begin(), nums.begin() + k - 1, nums.end(), greater<int>());
+        return nums[k - 1];
     }
 
     int quickSelect(vector<int>& nums, int left, int right, int k) {
