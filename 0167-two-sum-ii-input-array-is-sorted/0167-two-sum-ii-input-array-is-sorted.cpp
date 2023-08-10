@@ -20,6 +20,6 @@ public:
             }
         }
         // impossible
-        return {-1, -1};
+        return {};
     }
 };
