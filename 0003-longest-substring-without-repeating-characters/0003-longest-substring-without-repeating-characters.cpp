@@ -3,7 +3,7 @@ public:
     int lengthOfLongestSubstring(string s) {
         // Two pointer with sliding window  + hash table set
         // TC; O(n), n is the string length
-        // SC: O(1)
+        // SC: O(n)
         int n = s.size();
         int left = 0;
         int right = 0;
