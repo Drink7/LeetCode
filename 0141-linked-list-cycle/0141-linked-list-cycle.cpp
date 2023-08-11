@@ -9,10 +9,13 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        // Fast-slow pointer
-        // fast go two steps, slow go one steps
-        // TC: O(n)
+        // Two pointer, fast slow pointers
+        // TC: O(n), n is node numbers
         // SC: O(1)
+        if (head == nullptr || head->next == nullptr) {
+            return false;
+        }
+
         ListNode* fast = head;
         ListNode* slow = head;
         while (fast != nullptr && fast->next != nullptr) {
