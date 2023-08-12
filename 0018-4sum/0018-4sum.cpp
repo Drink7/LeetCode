@@ -55,7 +55,9 @@ public:
     }
     vector<vector<int>> NSum(vector<int>& nums, int left, int right, long long int target, int n) {
         vector<vector<int>> results;
-        if (right - left + 1 < n || (long long int) nums[left] * n > target || (long long int)nums[right] * n < target) {
+        if (right - left + 1 < n || (long long int) nums[left] * n > target || (long long int) nums[right] * n < target) {
+            // if minimum possible sum (every element is first element) > target 
+            // or maximum possible sum (every element is first element) < target, it's impossible to get target anyway          
             return results;
         }
         if (n == 2) {
