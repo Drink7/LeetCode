@@ -5,10 +5,14 @@ public:
         // First sort array, then calculate each abs(sum - target) to find the minimum
         // TC: O(n^2)
         // SC: O(1)
+        if (nums.size() < 3) {
+            return 0;
+        }
+
         sort(nums.begin(), nums.end());
         int n = nums.size();
-        int minSum = INT_MAX;
-        int minDiff = INT_MAX;
+        // avoid using INT_MAX here
+        int minSum = nums[0] + nums[1] + nums[2];
         for (int i = 0; i < n; i++) {
             // skip repeat
             if (i > 0 && nums[i - 1] == nums[i]) {
@@ -19,8 +23,7 @@ public:
             int right = n - 1;
             while (left < right) {
                 int sum = first + nums[left] + nums[right];
-                if (minDiff > abs(sum - target)) {
-                    minDiff = abs(sum - target);
+                if (abs(target - minSum) > abs(target - sum)) {
                     minSum = sum;
                 }
                 if (sum == target) {
