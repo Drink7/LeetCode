@@ -1,18 +1,19 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        // Two pointer and traverse
+        // Two pointer?
+        // The pointer would point to the distic number position
         // TC: O(n)
         // SC: O(1)
-        int n = nums.size();
         int curVal = nums[0];
-        int count = 1;
-        for (int i = 1; i < n; i++) {
-            if (curVal != nums[i]) {
-                nums[count++] = nums[i];
+        int pointer = 1;
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] != curVal) {
+                nums[pointer] = nums[i];
+                pointer++;
                 curVal = nums[i];
             }
         }
-        return count;
+        return pointer;
     }
 };
