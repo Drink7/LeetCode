@@ -1,6 +1,7 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
+        /*
         // dynamic programming
         // calculate buy price to dp
         // use prices - dp and check the max profit
@@ -16,6 +17,24 @@ public:
         int maxProfit = 0;
         for (int i = 0; i < prices.size(); i++) {
             maxProfit = max(maxProfit, prices[i] - dp[i]);
+        }
+        return maxProfit;
+        */
+
+        // Sliding window
+        // TC: O(n)
+        // SC: O(1)
+        int left = 0;
+        int right = 0;
+        int n = prices.size();
+        int maxProfit = 0;
+        while (right < n) {
+            int sell = prices[right];
+            if (sell - prices[left] < 0) {
+                left = right;
+            }
+            maxProfit = max(maxProfit, sell - prices[left]);
+            right++;
         }
         return maxProfit;
     }
