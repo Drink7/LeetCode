@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        // dynamic rogramming
+        // dynamic programming
         // calculate buy price to dp
         // use prices - dp and check the max profit
         // TC: O(n)
