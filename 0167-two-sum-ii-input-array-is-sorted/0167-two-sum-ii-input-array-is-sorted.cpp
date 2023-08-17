@@ -1,12 +1,10 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
-        // Use two pointer and check the sum
-        // if the sum is bigger than target, move right
-        // if the sum is smaller than target, move left
+        // Two pointer
+        // left, right
         // TC: O(n)
         // SC: O(1)
-
         int left = 0;
         int right = numbers.size() - 1;
         while (left < right) {
@@ -19,7 +17,6 @@ public:
                 left++;
             }
         }
-        // impossible
         return {};
     }
 };
