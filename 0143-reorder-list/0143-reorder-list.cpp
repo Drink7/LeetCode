@@ -11,6 +11,7 @@
 class Solution {
 public:
     void reorderList(ListNode* head) {
+        /*
         // store all node then do interleave
         // TC: O(n)
         // SC: O(1)
@@ -34,5 +35,43 @@ public:
             }
         }
         list[right]->next = nullptr;
+        */
+
+        // Two Pointer with fast slow pointer
+        // TC: O(logn)
+        // SC: O(1)
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while (fast != nullptr && fast->next != nullptr) {
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+
+        ListNode* leftPart = head;
+        ListNode* rightPart = reverse(slow);
+        while (leftPart != nullptr && rightPart != nullptr) {
+            ListNode* next = leftPart->next;
+            leftPart->next = rightPart;
+            leftPart = next;
+
+            next = rightPart->next;
+            rightPart->next = leftPart;
+            rightPart = next;
+        }
+
+        if (leftPart != nullptr) {
+            leftPart->next = nullptr;
+        }
+    }
+
+    ListNode* reverse(ListNode* head) {
+        ListNode* prev = nullptr;
+        while (head != nullptr) {
+            ListNode* next = head->next;
+            head->next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
     }
 };
