@@ -16,21 +16,13 @@ public:
         int maxLen = 0;
         while (right < n) {
             dict[s[right]]++;
-            while (findMaxCnt(dict) + k < right - left + 1) {
+            maxLen = max(maxLen, dict[s[right]]);
+            if (maxLen + k < right - left + 1) {
                 dict[s[left]]--;
                 left++;
             }
-            maxLen = max(maxLen, right - left + 1);
             right++;
         }
-        return maxLen;
-    }
-
-    int findMaxCnt(unordered_map<char, int>& dict) {
-        int maxCnt = INT_MIN;
-        for (auto const& p : dict) {
-            maxCnt = max(maxCnt, p.second);
-        }
-        return maxCnt;
+        return right - left;
     }
 };
