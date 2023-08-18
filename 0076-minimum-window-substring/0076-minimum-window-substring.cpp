@@ -1,49 +1,46 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        // Sliding window
-        // TC: O(m + n), m is s length, n is t length
-        // SC: O(n)
+        // two pointer with hash table (unordered_map)
+        // TC: O(mn)
+        // SC: O(mn)
         if (s.size() < t.size()) {
             return "";
         }
 
-        unordered_map<char, int> tDict;
+        unordered_map<char, int> dict;
         for (auto const& c : t) {
-            tDict[c]++;
+            dict[c]++;
         }
 
         int left = 0;
         int right = 0;
-        int minStart = 0;
+        int n = s.size();
         int minLen = INT_MAX;
+        int minLeft = 0;
         int counter = t.size();
-
-        while (right < s.size()) {
-            char rightChar = s[right];
-            if (tDict[rightChar] > 0) {
+        while (right < n) {
+            if (dict[s[right]] > 0) {
                 counter--;
             }
-            tDict[rightChar]--;
+            dict[s[right]]--;
 
             // Move left
-            while (counter == 0) {
-                char leftChar = s[left];
-                if (right - left + 1 < minLen) {
-                    minStart = left;
+            while (left <= right && counter == 0) {
+                if (minLen > right - left + 1) {
                     minLen = right - left + 1;
+                    minLeft = left;
                 }
-                tDict[leftChar]++;
-                if (tDict[leftChar] > 0) {
+                dict[s[left]]++;
+                if (dict[s[left]] > 0) {
                     counter++;
                 }
                 left++;
             }
 
-            // Move right
+            // move right
             right++;
         }
-
-        return (minLen == INT_MAX) ? "" : s.substr(minStart, minLen);
+        return minLen == INT_MAX ? "" : s.substr(minLeft, minLen);
     }
 };
