@@ -7,33 +7,30 @@ public:
         // max char number + k >= current window size, it means we can replace all the distinct char in our window
         // else, it means we can not replace all the distinct char in the window
         // move left pointer
+        // TC: O(n)
+        // SC: O(n)
+        unordered_map<char, int> dict;
         int n = s.size();
         int left = 0;
         int right = 0;
-        int result = 0;
-        unordered_map<char, int> dict;
+        int maxLen = 0;
         while (right < n) {
             dict[s[right]]++;
-
-            // right - left + 1 is our window size
-            while (findMax(dict) + k < right - left + 1) {
+            while (findMaxCnt(dict) + k < right - left + 1) {
                 dict[s[left]]--;
                 left++;
             }
-
-            result = max(result, right - left + 1);
+            maxLen = max(maxLen, right - left + 1);
             right++;
         }
-        return result;
+        return maxLen;
     }
 
-    int findMax(unordered_map<char, int>& dict) {
-        int maxVal = INT_MIN;
+    int findMaxCnt(unordered_map<char, int>& dict) {
+        int maxCnt = INT_MIN;
         for (auto const& p : dict) {
-            if (p.second > maxVal) {
-                maxVal = p.second;
-            }
+            maxCnt = max(maxCnt, p.second);
         }
-        return maxVal;
+        return maxCnt;
     }
 };
