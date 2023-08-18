@@ -16,9 +16,13 @@ public:
         }
         return result;
         */
-        // Maintain sliding window
+
+        // Sliding window with deque
+        // push_back / push_front / pop_back / pop_front
+        // we keep the deque front always the largest element
+        // pop up the smaller element when there is a new element need to add to the tail of deque
         // TC: O(n)
-        // SC: O(k)
+        // SC: O(n)
         deque<int> dq;
         vector<int> result;
         int n = nums.size();
@@ -28,10 +32,14 @@ public:
                 dq.pop_back();
             }
             dq.push_back(right);
-            if (dq.front() == right - k) {
+
+            // check if we need to pop front
+            if (dq.front() < right - k + 1) {
                 dq.pop_front();
             }
-            if (right >= k - 1) {
+
+            // start to store max val
+            if (right + 1 >= k) {
                 result.push_back(nums[dq.front()]);
             }
             right++;
