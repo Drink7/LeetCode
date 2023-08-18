@@ -15,29 +15,24 @@ public:
         // TC: O(n)
         // SC: O(1)
         vector<ListNode*> list;
-        ListNode* dummy = new ListNode();
-        ListNode* cur = head;
-        dummy->next = cur;
-        while (cur != nullptr) {
-            list.push_back(cur);
-            cur = cur->next;
+        while (head != nullptr) {
+            list.push_back(head);
+            head = head->next;
         }
 
         // interleave the nodes
         int left = 0;
         int right = list.size() - 1;
-        while (left <= right) {
-            cur = list[left];
-            cur->next = list[right];
+        while (left < right) {
+            list[left]->next = list[right];
             left++;
 
             // Note the corner case
-            if (left <= right) {
-                cur = cur->next;
-                cur->next = list[left];
+            if (left < right) {
+                list[right]->next = list[left];
                 right--;
             }
         }
-        cur->next = nullptr;
+        list[right]->next = nullptr;
     }
 };
