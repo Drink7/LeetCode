@@ -2,8 +2,8 @@ class Solution {
 public:
     string minWindow(string s, string t) {
         // Sliding window
-        // TC: O(mn), m is s length, n is t length
-        // SC: O(mn)
+        // TC: O(m + n), m is s length, n is t length
+        // SC: O(n)
         if (s.size() < t.size()) {
             return "";
         }
