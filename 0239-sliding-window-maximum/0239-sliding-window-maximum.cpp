@@ -34,12 +34,12 @@ public:
             dq.push_back(right);
 
             // check if we need to pop front
-            if (dq.front() < right - k + 1) {
+            if (dq.front() == right - k) {
                 dq.pop_front();
             }
 
             // start to store max val
-            if (right + 1 >= k) {
+            if (right >= k - 1) {
                 result.push_back(nums[dq.front()]);
             }
             right++;
