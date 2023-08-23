@@ -11,26 +11,33 @@
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
-        // Use vector + pair store (val, ListNode), then sort 
-        // return dummy.next
-        // TC: O(n + nlogn + n) -> O(nlogn)
+        // use vector <pair> to store the list
+        // rearrange
+        // TC: O(nlogn)
         // SC: O(n)
-        vector<pair<int, ListNode*>> nodeList;
-        while (head != nullptr) {
-            nodeList.push_back({head->val, head});
-            head = head->next;
+        if (head == nullptr || head->next == nullptr) {
+            return head;
         }
-        sort(nodeList.begin(), nodeList.end(), [](pair<int, ListNode*> a, pair<int, ListNode*> b) {
+
+        vector<pair<int, ListNode*>> nodeList;
+        ListNode* prev = head;
+        while (prev != nullptr) {
+            nodeList.push_back({prev->val, prev});
+            prev = prev->next;
+        }
+
+        // sort by val
+        sort(nodeList.begin(), nodeList.end(), [](pair<int, ListNode*>& a, pair<int, ListNode*>& b) {
             return a.first < b.first;
         });
 
+        // rearrange
         ListNode* dummy = new ListNode();
-        ListNode* cur = dummy;
-        for (auto const& p : nodeList) {
-            cur->next = p.second;
-            cur = cur->next;
+        dummy->next = nodeList[0].second;
+        for (int i = 1; i < nodeList.size(); i++) {
+            nodeList[i - 1].second->next = nodeList[i].second;
         }
-        cur->next = nullptr;
+        nodeList[nodeList.size() - 1].second->next = nullptr;
         return dummy->next;
     }
 };
