@@ -39,8 +39,26 @@ public:
         return (3 * setSum - numSum) / 2;
         */
 
+
         // Bit operation
+        // TC: O(n)
+        // SC: O(1)
+        int ans = 0;
+        for (int i = 0; i < 32; i++) {
+            int count = 0;
+            for (int j = 0; j < nums.size(); j++) {
+                if ((nums[j] >> i) & 1) {
+                    count++;
+                }
+            }
+            ans = ans | (count % 3) << i;
+        }
+        return ans;
+        /*
+        // Bit operation Magic
         // can not sort
+        // TC: O(n)
+        // SC: O(1)
         int ones = 0;
         int twos = 0;
         for (int i = 0; i < nums.size(); i++) {
@@ -48,5 +66,6 @@ public:
             twos = (twos ^ nums[i]) & ~ones;
         }
         return ones;
+        */
     }
 };
