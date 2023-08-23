@@ -33,11 +33,12 @@ public:
 
         // rearrange
         ListNode* dummy = new ListNode();
-        dummy->next = nodeList[0].second;
-        for (int i = 1; i < nodeList.size(); i++) {
-            nodeList[i - 1].second->next = nodeList[i].second;
+        head = dummy;
+        for (int i = 0; i < nodeList.size(); i++) {
+            head->next = nodeList[i].second;
+            head = head->next;
         }
-        nodeList[nodeList.size() - 1].second->next = nullptr;
+        head->next = nullptr;
         return dummy->next;
     }
 };
