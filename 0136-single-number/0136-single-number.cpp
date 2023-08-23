@@ -1,14 +1,13 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        // Use XOR
+        // Use XOR (a^a = 0)
         // TC: O(n)
         // SC: O(1)
-        int n = nums.size();
-        int result = nums[0];
-        for (int i = 1; i < n; i++) {
-            result ^= nums[i];
+        int a = nums[0];
+        for (int i = 1; i < nums.size(); i++) {
+            a = a ^ nums[i];
         }
-        return result;
+        return a;
     }
 };
