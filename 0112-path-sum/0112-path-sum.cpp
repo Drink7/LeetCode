@@ -12,7 +12,7 @@
 class Solution {
 public:
     bool hasPathSum(TreeNode* root, int targetSum) {
-        // preorder
+        // preorder + pass param
         // TC: O(n)
         // SC: O(1)
         if (root == nullptr) {
