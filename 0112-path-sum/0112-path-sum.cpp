@@ -12,35 +12,21 @@
 class Solution {
 public:
     bool hasPathSum(TreeNode* root, int targetSum) {
-        // postorder
+        // preorder
         // TC: O(n)
         // SC: O(1)
-        dfs(root, 0, targetSum);
-        return isValid;
-    }
-
-    void dfs(TreeNode* root, int curSum, int targetSum) {
         if (root == nullptr) {
-            return;
+            return false;
         }
 
-        curSum += root->val;
-
-        if (root->left != nullptr) {
-            dfs(root->left, curSum, targetSum); 
-        }
-
-        if (root->right != nullptr) {
-            dfs(root->right, curSum, targetSum); 
-        }
-
-        if (root->left == nullptr && root->right == nullptr) {
-            // leaf node, check
-            if (curSum == targetSum) {
-                isValid = true;
+        if (root->right == nullptr && root->left == nullptr) {
+            if (root->val == targetSum) {
+                return true;
+            } else {
+                return false;
             }
         }
+
+        return hasPathSum(root->left, targetSum - root->val) | hasPathSum(root->right, targetSum - root->val);
     }
-private:
-    bool isValid = false;
 };
