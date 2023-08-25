@@ -18,13 +18,13 @@ public:
 
     int diameterHelper(TreeNode* root) {
         if (root == nullptr) {
-            return -1;
+            return 0;
         }
 
-        int left = 1 + diameterHelper(root->left);
-        int right = 1 + diameterHelper(root->right);
+        int left = diameterHelper(root->left);
+        int right = diameterHelper(root->right);
         maxLen = max(maxLen, left + right);
-        return max(left, right);
+        return max(left, right) + 1;
     }
 
 private:
