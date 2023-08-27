@@ -1,16 +1,15 @@
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-        // Two pointers
-        // Move the smaller side
+        // two pointer and move the smaller height side to find max volumn
         // TC: O(n)
         // SC: O(1)
+        int result = 0;
         int left = 0;
         int right = height.size() - 1;
-        int result = INT_MIN;
         while (left < right) {
-            int area = min(height[left], height[right]) * (right - left);
-            result = max(result, area);
+            int tmp = min(height[left], height[right]) * (right - left);
+            result = max(result, tmp);
             if (height[left] > height[right]) {
                 right--;
             } else {
