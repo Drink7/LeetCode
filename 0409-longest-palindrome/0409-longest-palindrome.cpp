@@ -1,16 +1,17 @@
 class Solution {
 public:
     int longestPalindrome(string s) {
-        // Use hash table to add all even number of letter and maximum odd number of letter
+        // use hash table to record the letter
+        // use only one odd, others would use number odd-1
         // TC: O(n)
-        // SC: O(n) 
+        // SC: O(n)
         unordered_map<char, int> dict;
+        int result = 0;
         for (auto const& c : s) {
             dict[c]++;
         }
 
-        int result = 0;
-        bool isOddUsed = false;
+        bool isOddUsed = false; 
         for (auto const& p : dict) {
             if (p.second % 2 == 0) {
                 result += p.second;
