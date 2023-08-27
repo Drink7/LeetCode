@@ -6,8 +6,7 @@ public:
         // TC: O(n^2)
         // SC: O(1)
         sort(nums.begin(), nums.end());
-        int result = INT_MAX;
-        int minDiff = INT_MAX;
+        int minSum = nums[0] + nums[1] + nums[2];
         for (int i = 0; i < nums.size(); i++) {
             if (i >= 1 && nums[i] == nums[i - 1]) {
                 continue;
@@ -18,6 +17,10 @@ public:
             int right = nums.size() - 1;
             while (left < right) {
                 int sum = num + nums[left] + nums[right];
+                if (abs(minSum - target) > abs(sum - target)) {
+                    minSum = sum;
+                }
+
                 if (sum > target) {
                     right--;
                 } else if (sum < target) {
@@ -25,14 +28,8 @@ public:
                 } else {
                     return sum;
                 }
-                
-                int diff = abs(sum - target);
-                if (minDiff > diff) {
-                    minDiff = diff;
-                    result = sum;
-                }
             }
         }
-        return result;
+        return minSum;
     }
 };
