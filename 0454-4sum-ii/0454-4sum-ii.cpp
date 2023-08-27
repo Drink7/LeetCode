@@ -1,26 +1,25 @@
 class Solution {
 public:
     int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {
-        // similar concept as two sum
-        // TC: O(n^2)
-        // SC: O(n)
-        // sum, count
+        // hash table -> hash map, similar to two sum
+        // TC: O(mnop), mnop is nums1 ~ nums4 size
+        // SC: O(mn)
         unordered_map<int, int> dict;
-        int count = 0;
-        for (auto const& num1 : nums1) {
-            for (auto const& num2 : nums2) {
-                dict[num1 + num2]++;
+        int result = 0;
+        for (int i = 0; i < nums1.size(); i++) {
+            for (int j = 0; j < nums2.size(); j++) {
+                dict[nums1[i] + nums2[j]]++;
             }
         }
 
-        // check if nums3 + nums4 match
-        for (auto const& num3 : nums3) {
-            for (auto const& num4 : nums4) {
-                if (dict.count(-(num3 + num4))) {
-                    count += dict[-(num3 + num4)];
+        // check if -(nums3 + nums4) exist in the dict and count the sum
+        for (int i = 0; i < nums3.size(); i++) {
+            for (int j = 0; j < nums4.size(); j++) {
+                if (dict.count(-(nums3[i] + nums4[j]))) {
+                    result += dict[-(nums3[i] + nums4[j])];
                 }
             }
         }
-        return count;
+        return result;
     }
 };
