@@ -1,26 +1,27 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        // Two pointer (left / right)
+        // if not alpha or digit, go with next letter
+        // if yes, tolower and check left, right pointer
         // TC: O(n)
         // SC: O(1)
         int left = 0;
         int right = s.size() - 1;
-        while (left <= right) {
-            while (left <= right && (!isalpha(s[left]) && !isdigit(s[left]))) {
+        while (left < right) {
+            while (left < right && !isalpha(s[left]) && !isdigit(s[left])) {
                 left++;
             }
 
-            while (left <= right && (!isalpha(s[right]) && !isdigit(s[right]))) {
+            while (left < right && !isalpha(s[right]) && !isdigit(s[right])) {
                 right--;
             }
 
-            if (left <= right && tolower(s[left]) != tolower(s[right])) {
+            // all to lowercase and check
+            if (left > right || tolower(s[left]) != tolower(s[right])) {
                 return false;
-            } else {
-                left++;
-                right--;
             }
+            left++;
+            right--;
         }
         return true;
     }
