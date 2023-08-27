@@ -1,28 +1,28 @@
 class Solution {
 public:
     int countSubstrings(string s) {
-        // Two pointer, starts at the same point, move right and left pointers backwards
+        // similar to LC. 5, but we count here
         // TC: O(n^2)
         // SC: O(1)
-        int n = s.size();
-        int count = 0;
-        for (int i = 0; i < n; i++) {
+        int result = 0;
+        for (int i = 0; i < s.size(); i++) {
+            // odd
             int left = i;
             int right = i;
-            while (left >= 0 && right < n && s[left] == s[right]) {
-                count++;
+            while (left >= 0 && right < s.size() && s[left] == s[right]) {
+                result++;
                 left--;
                 right++;
             }
 
             left = i;
             right = i + 1;
-            while (left >= 0 && right < n && s[left] == s[right]) {
-                count++;
+            while (left >= 0 && right < s.size() && s[left] == s[right]) {
+                result++;
                 left--;
                 right++;
             }
         }
-        return count;
+        return result;
     }
 };
