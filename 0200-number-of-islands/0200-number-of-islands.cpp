@@ -36,6 +36,7 @@ private:
     int dRow[4] = {0, 1, 0, -1};
     int dCol[4] = {1, 0, -1, 0};
 */
+/*
 public:
     int numIslands(vector<vector<char>>& grid) {
         // Use Union find (2d union find, use total islands as count, when union, count--)
@@ -97,4 +98,51 @@ private:
     vector<int> parent;
     vector<int> rank;
     int lands = 0;
+*/
+
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        // Use BFS to traverse all 1's
+        // when we have visit 1, change the 1 to 0, so we don't need the visited grid
+        // TC: O(mn)
+        // SC: O(min(m, n))
+        queue<pair<int, int>> landQueue;
+        int m = grid.size();
+        int n = grid[0].size();
+        int lands = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == '1') {
+                    landQueue.push({i, j});
+                    while (!landQueue.empty()) {
+                        int queueSize = landQueue.size();
+                        for (int k = 0; k < queueSize; k++) {
+                            pair<int, int> p = landQueue.front();
+                            landQueue.pop();
+
+                            int row = p.first;
+                            int col = p.second;
+                            grid[row][col] = '0';
+                            // check its 4 dir
+                            for (int l = 0; l < 4; l++) {
+                                int newRow = row + dRow[l];
+                                int newCol = col + dCol[l];
+                                if (newRow >= 0 && newRow < m &&
+                                    newCol >= 0 && newCol < n &&
+                                    grid[newRow][newCol] == '1') {
+                                    landQueue.push({newRow, newCol});
+                                    grid[newRow][newCol] = '0';
+                                }
+                            }
+                        }
+                    }
+                    lands++;
+                }
+            }
+        }
+        return lands;
+    }
+private:
+    int dRow[4] = {0, 1, 0, -1};
+    int dCol[4] = {1, 0, -1, 0};
 };
