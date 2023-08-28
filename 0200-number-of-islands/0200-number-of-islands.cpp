@@ -114,19 +114,17 @@ public:
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == '1') {
                     landQueue.push({i, j});
+                    grid[i][j] = '0';
                     while (!landQueue.empty()) {
                         int queueSize = landQueue.size();
                         for (int k = 0; k < queueSize; k++) {
                             pair<int, int> p = landQueue.front();
                             landQueue.pop();
 
-                            int row = p.first;
-                            int col = p.second;
-                            grid[row][col] = '0';
                             // check its 4 dir
                             for (int l = 0; l < 4; l++) {
-                                int newRow = row + dRow[l];
-                                int newCol = col + dCol[l];
+                                int newRow = p.first + dRow[l];
+                                int newCol = p.second + dCol[l];
                                 if (newRow >= 0 && newRow < m &&
                                     newCol >= 0 && newCol < n &&
                                     grid[newRow][newCol] == '1') {
