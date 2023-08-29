@@ -1,6 +1,7 @@
 class Solution {
 public:
     int bitwiseComplement(int n) {
+        /*
         // use XOR to original num
         // TC: O(1)
         // SC: O(1)
@@ -22,5 +23,13 @@ public:
         }
 
         return n;
+        */
+        // Elegant
+        // Elegant
+        int mask = 1;
+        while (mask < n) {
+            mask = (mask << 1) | 1;
+        }
+        return mask ^ n;
     }
 };
