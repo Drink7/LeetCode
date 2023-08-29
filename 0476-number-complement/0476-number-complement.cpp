@@ -1,6 +1,7 @@
 class Solution {
 public:
     int findComplement(int num) {
+        /*
         // use XOR to original num
         // TC: O(1)
         // SC: O(1)
@@ -21,5 +22,13 @@ public:
         }
 
         return num;
+        */
+
+        // Elegant
+        unsigned mask = ~0;
+        while (num & mask) {
+            mask = mask << 1;
+        }
+        return ~mask ^ num;
     }
 };
