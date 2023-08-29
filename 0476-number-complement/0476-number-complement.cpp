@@ -1,11 +1,14 @@
 class Solution {
 public:
     int findComplement(int num) {
-        // set bit mask = 1111111111111111
         // use XOR to original num
         // TC: O(1)
         // SC: O(1)
         // find leading one
+        if (num == 0) {
+            return 1;
+        }
+
         int totalBit = 0;
         int tmp = num;
         while (tmp) {
