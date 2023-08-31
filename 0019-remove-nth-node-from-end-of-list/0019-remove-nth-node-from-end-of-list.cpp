@@ -17,6 +17,7 @@ public:
         // keep tracking the prev node of slow
         // TC: O(n)
         // SC: O(1)
+        /*
         ListNode* fast = head;
         ListNode* slow = head;
         ListNode* prev = nullptr;
@@ -39,5 +40,23 @@ public:
             // we would remove the head node
             return head->next;
         }
+        */
+
+        // more elegant
+        ListNode* dummy = new ListNode();
+        ListNode* slow = dummy;
+        ListNode* fast = dummy;
+        dummy->next = head;
+        while (n >= 0) {
+            fast = fast->next;
+            n--;
+        }
+
+        while (fast != nullptr) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        slow->next = slow->next->next;
+        return dummy->next;
     }
 };
