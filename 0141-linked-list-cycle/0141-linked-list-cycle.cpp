@@ -9,8 +9,8 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        // Two pointer with fast & slow pointer
-        // TC: O(n)
+        // fast slow pointer hare and tortoise algorithm
+        // TC: O(2n + k), n is the step slow pointer meet fast pointer, and the k is the steps fast pointer meet slow pointer
         // SC: O(1)
         ListNode* fast = head;
         ListNode* slow = head;
