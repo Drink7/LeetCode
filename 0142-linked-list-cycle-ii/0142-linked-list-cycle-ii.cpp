@@ -9,9 +9,7 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        // Two pointer with fast & slow
-        // Tortoise and Hare Algorithm and find the cycle start node
-        // move one pointer node back to head and keep those two pointer go with the same speed
+        // use floyd cycle detection algorithm
         // TC: O(n)
         // SC: O(1)
         ListNode* fast = head;
@@ -20,8 +18,7 @@ public:
             fast = fast->next->next;
             slow = slow->next;
             if (fast == slow) {
-                // move fast back to head node and move with the same speed of slow
-                fast = head;
+                slow = head;
                 while (fast != slow) {
                     fast = fast->next;
                     slow = slow->next;
@@ -29,7 +26,6 @@ public:
                 return fast;
             }
         }
-        // there is no cycle
         return nullptr;
     }
 };
