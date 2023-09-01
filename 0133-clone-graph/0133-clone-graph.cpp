@@ -61,15 +61,12 @@ public:
                 Node* n = q.front();
                 q.pop();
                 for (auto const& neighbor : n->neighbors) {
-                    Node* cloneNeighbor;
-                    if (cloneDict.count(neighbor->val)) {
-                        cloneNeighbor = cloneDict[neighbor->val];
-                    } else {
-                        cloneNeighbor = new Node(neighbor->val);
-                        cloneDict[cloneNeighbor->val] = cloneNeighbor;
+                    if (cloneDict.count(neighbor->val) == 0) {
+                        Node* cloneNeighbor = new Node(neighbor->val);
+                        cloneDict[neighbor->val] = cloneNeighbor;
                         q.push(neighbor);
                     }
-                    cloneDict[n->val]->neighbors.push_back(cloneNeighbor);
+                    cloneDict[n->val]->neighbors.push_back(cloneDict[neighbor->val]);
                 }
             }
         }
