@@ -37,7 +37,7 @@ public:
         cloneDict[node->val] = cloneNode;
         for (auto const& neighbor : node->neighbors) {
             Node* cloneNeighbor = cloneGraph(neighbor);
-            cloneDict[node->val]->neighbors.push_back(cloneNeighbor);
+            cloneNode->neighbors.push_back(cloneNeighbor);
         }
         return cloneNode;
     }
