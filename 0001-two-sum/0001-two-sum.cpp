@@ -12,7 +12,6 @@ public:
             }
             dict[nums[i]] = i;
         }
-        // impossible
         return {};
     }
 };
