@@ -1,14 +1,14 @@
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
-        // Choose the first string as token
-        // start from the second string and get the common prefix
-        // until the last string
-        // TC: O(m * n), m is average string length, n is string list number
+        // pick strs[0] as base
+        // compare with the 1....
+        // use find to check if base is prefix of strs[1]
+        // if not, substr hte base of length base - 1
+        // TC: O(n * m), n is strs list length, m is average strs element size
         // SC: O(1)
         string base = strs[0];
-        int n = strs.size();
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i < strs.size(); i++) {
             while (strs[i].find(base) != 0) {
                 base = base.substr(0, base.size() - 1);
             }
