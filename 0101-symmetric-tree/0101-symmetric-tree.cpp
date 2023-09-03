@@ -12,6 +12,8 @@
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
+        /*
+        // recursive
         // root == nullptr, Symmetric
         // traverse left, right tree
         // TC: O(n)
@@ -20,6 +22,39 @@ public:
             return true;
         }
         return isSubSymmetric(root->left, root->right);
+        */
+
+        // Iterative
+        if (root == nullptr) {
+            return true;
+        }
+        queue<pair<TreeNode*, TreeNode*>> q;
+        q.push({root->left, root->right});
+        while (!q.empty()) {
+            int qSize = q.size();
+            for (int i = 0; i < qSize; i++) {
+                pair<TreeNode*, TreeNode*> p = q.front();
+                q.pop();
+
+                TreeNode* left = p.first;
+                TreeNode* right = p.second;
+
+                if (left && right) {
+                    if (left->val == right->val) {
+                        q.push({left->right, right->left});
+                        q.push({left->left, right->right});
+                    } else {
+                        return false;
+                    }
+                } else {
+                    if (left == nullptr && right == nullptr) {
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     bool isSubSymmetric(TreeNode* left, TreeNode* right) {
