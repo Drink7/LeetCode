@@ -1,16 +1,15 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        // Two pointer
+        // remove duplicate element and return the unique element numbers
         // TC: O(n)
         // SC: O(1)
-        int left = 1;
+        int index = 1;
         for (int i = 1; i < nums.size(); i++) {
             if (nums[i] != nums[i - 1]) {
-                nums[left] = nums[i];
-                left++;
+                nums[index++] = nums[i];
             }
         }
-        return left;
+        return index;
     }
 };
