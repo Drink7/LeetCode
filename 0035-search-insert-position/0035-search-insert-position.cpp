@@ -18,6 +18,6 @@ public:
                 low = mid + 1;
             }
         }
-        return nums.size();
+        return low;
     }
 };
