@@ -12,24 +12,30 @@
 class Solution {
 public:
     int maxPathSum(TreeNode* root) {
-        // compare left + root + right with max sum
-        // then return the root + max(left, right)
-        maxSumHelper(root);
+        // Check max path sum in each subtree
+        // left, right and root
+        // return root + max(left, right)
+        // TC: O(n)
+        // SC: O(1)
+        maxSum = INT_MIN;
+        pathSumHelper(root);
         return maxSum;
     }
 
-    int maxSumHelper(TreeNode* root) {
-        if (root == nullptr) {
+    int pathSumHelper(TreeNode* node) {
+        if (node == nullptr) {
             return 0;
         }
 
-        int maxLeft = max(maxSumHelper(root->left), 0);
-        int maxRight = max(maxSumHelper(root->right), 0);
-
-        maxSum = max(maxSum, maxLeft + root->val + maxRight);
-        return root->val + max(maxLeft, maxRight);
+        int left = pathSumHelper(node->left);
+        int right = pathSumHelper(node->right);
+        left = left > 0 ? left : 0;
+        right = right > 0 ? right : 0;
+        maxSum = max(maxSum, left + node->val + right);
+        return node->val + max(left, right);
     }
 
+
 private:
-    int maxSum = INT_MIN;
+    int maxSum = 0;
 };
