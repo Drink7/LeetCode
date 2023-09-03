@@ -1,13 +1,15 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        // Use XOR (a^a = 0)
+        // use XOR
         // TC: O(n)
         // SC: O(1)
-        int a = nums[0];
+        // Solution 2: set (insert the set then erase the element in set)
+        // Solution 3: 
+        int base = nums[0];
         for (int i = 1; i < nums.size(); i++) {
-            a = a ^ nums[i];
+            base = base ^ nums[i];
         }
-        return a;
+        return base;
     }
 };
