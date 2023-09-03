@@ -6,7 +6,7 @@ public:
         // carry = (bit_a + bit_b) / 2;
         // sum = (carry + (bit_a + bit_b)) % 2;
         // TC: O(m + n)
-        // SC: O(m)
+        // SC: O(1)
         int m = a.size() - 1;
         int n = b.size() - 1;
         string result = "";
