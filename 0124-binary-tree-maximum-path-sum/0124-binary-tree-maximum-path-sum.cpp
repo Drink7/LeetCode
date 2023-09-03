@@ -27,10 +27,10 @@ public:
             return 0;
         }
 
-        int left = pathSumHelper(node->left);
-        int right = pathSumHelper(node->right);
-        left = left > 0 ? left : 0;
-        right = right > 0 ? right : 0;
+        int left = max(pathSumHelper(node->left), 0);
+        int right = max(pathSumHelper(node->right), 0);
+        //left = left > 0 ? left : 0;
+        //right = right > 0 ? right : 0;
         maxSum = max(maxSum, left + node->val + right);
         return node->val + max(left, right);
     }
