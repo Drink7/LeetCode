@@ -18,21 +18,17 @@ public:
             return head;
         }
 
-        ListNode* dummy = head;
-        int curVal = head->val;
+        ListNode* dummy = new ListNode();
+        dummy->next = head;
         while (head != nullptr) {
             ListNode* next = head->next;
-            while (next != nullptr && next->val == curVal) {
+            while (next!= nullptr && next->val == head->val) {
                 next = next->next;
-            }
-            // we find the unique value / nullptr
-            if (next != nullptr) {
-                curVal = next->val;
             }
 
             head->next = next;
             head = head->next;
         }
-        return dummy;
+        return dummy->next;
     }
 };
