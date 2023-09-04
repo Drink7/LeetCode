@@ -1,6 +1,7 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
+        /*
         // hash table
         // TC: O(n)
         // SC: O(n)
@@ -18,5 +19,24 @@ public:
             }
         }
         return majorityElement;
+        */
+        // Boyer–Moore majority vote algorithm
+        // TC: O(1)
+        // SC: O(1)
+        int base = 0;
+        int baseCnt = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (baseCnt == 0) {
+                base = nums[i];
+                baseCnt++;
+            } else {
+                if (base == nums[i]) {
+                    baseCnt++;
+                } else {
+                    baseCnt--;
+                }
+            }
+        }
+        return base;
     }
 };
