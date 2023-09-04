@@ -11,6 +11,7 @@ public:
         vector<vector<int>> dp(m, vector<int>(n, 0));
 
         // init
+        // note the corner case
         for (int i = 0; i < n; i++) {
             if (obstacleGrid[0][i] == 0) {
                 if (i >= 1) {
