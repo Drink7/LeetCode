@@ -1,13 +1,10 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        // first row and col would be one
-        // m rows and n cols
-        // calculate all path, cur path = top + left
-        // TC: O(m*n)
-        // SC: O(m*n)
-        int dp[m][n];
-        fill_n(*dp, m * n, 0);
+        // 2D DP
+        // TC: O(m * n)
+        // SC: O(m * n)
+        vector<vector<int>> dp(m, vector<int>(n, 0));
         for (int i = 0; i < n; i++) {
             dp[0][i] = 1;
         }
@@ -16,10 +13,10 @@ public:
             dp[i][0] = 1;
         }
 
-        // calculate all grid
+        // start from (1, 1)
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
-                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                dp[i][j] = dp[i][j - 1] + dp[i - 1][j];;
             }
         }
         return dp[m - 1][n - 1];
