@@ -26,14 +26,14 @@ public:
         int base = 0;
         int baseCnt = 0;
         for (int i = 0; i < nums.size(); i++) {
-            if (baseCnt == 0) {
-                base = nums[i];
+            if (base == nums[i]) {
                 baseCnt++;
             } else {
-                if (base == nums[i]) {
+                if (baseCnt == 0) {
+                    base = nums[i];
                     baseCnt++;
                 } else {
-                    baseCnt--;
+                    baseCnt--;   
                 }
             }
         }
