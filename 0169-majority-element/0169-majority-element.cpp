@@ -1,42 +1,22 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        /*
-        // Hash table
+        // hash table
         // TC: O(n)
         // SC: O(n)
         unordered_map<int, int> dict;
-        int maxVal = 0;
-        int maxCount = 0;
         for (auto const& num : nums) {
             dict[num]++;
         }
 
+        int majorityCount = 0;
+        int majorityElement = 0;
         for (auto const& p : dict) {
-            if (p.second > maxCount) {
-                maxCount = p.second;
-                maxVal = p.first;
+            if (p.second > majorityCount) {
+                majorityCount = p.second;
+                majorityElement = p.first;
             }
         }
-        return maxVal;
-        */
-
-        // In place (Boyer-Moore Majority Vote Algorithm)
-        // The majority element is the element that appears more than ⌊n / 2⌋
-        // TC: O(n)
-        // SC: O(1)
-        int current = 0;
-        int count = 0;
-        for (auto const& num : nums) {
-            if (current == num) {
-                count++;
-            } else if (count > 0) {
-                count--;
-            } else {
-                current = num;
-                count = 1;
-            }
-        }
-        return current;
+        return majorityElement;
     }
 };
