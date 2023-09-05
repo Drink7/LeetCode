@@ -9,7 +9,7 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        // fast slow pointer hare and tortoise algorithm
+        // floyd cycle detection
         // TC: O(n)
         // SC: O(1)
         ListNode* fast = head;
