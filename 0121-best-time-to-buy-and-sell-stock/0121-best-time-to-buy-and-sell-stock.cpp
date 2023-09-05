@@ -15,7 +15,6 @@ public:
                 minPrices[i] = minPrices[i - 1];
             }
             profit = max(profit, prices[i] - minPrices[i]);
-            cout << profit << endl;
         }
         return profit;
     }
