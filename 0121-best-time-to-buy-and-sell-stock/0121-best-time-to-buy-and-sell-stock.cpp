@@ -1,41 +1,22 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        /*
-        // dynamic programming
-        // calculate buy price to dp
-        // use prices - dp and check the max profit
+        // find a min value array
+        // maintain a max profit value
         // TC: O(n)
         // SC: O(n)
-        vector<int> dp(prices.size(), 0);
-        dp[0] = prices[0];
+        vector<int> minPrices(prices.size(), 0);
+        int profit = 0;
+        minPrices[0] = prices[0];
         for (int i = 1; i < prices.size(); i++) {
-            dp[i] = min(dp[i - 1], prices[i]);
-        }
-
-        // calculate max profit
-        int maxProfit = 0;
-        for (int i = 0; i < prices.size(); i++) {
-            maxProfit = max(maxProfit, prices[i] - dp[i]);
-        }
-        return maxProfit;
-        */
-
-        // Sliding window
-        // TC: O(n)
-        // SC: O(1)
-        int left = 0;
-        int right = 0;
-        int n = prices.size();
-        int maxProfit = 0;
-        while (right < n) {
-            int sell = prices[right];
-            if (sell - prices[left] < 0) {
-                left = right;
+            if (prices[i] < minPrices[i - 1]) {
+                minPrices[i] = prices[i];
+            } else {
+                minPrices[i] = minPrices[i - 1];
             }
-            maxProfit = max(maxProfit, sell - prices[left]);
-            right++;
+            profit = max(profit, prices[i] - minPrices[i]);
+            cout << profit << endl;
         }
-        return maxProfit;
+        return profit;
     }
 };
