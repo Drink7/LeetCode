@@ -45,16 +45,16 @@ public:
             return head;
         }
 
-        ListNode* tmp = nullptr;
+        ListNode* prev = nullptr;
         ListNode* fast = head;
         ListNode* slow = head;
         while (fast != nullptr && fast->next != nullptr) {
-            tmp = slow;
+            prev = slow;
             fast = fast->next->next;
             slow = slow->next;
         }
 
-        tmp->next = nullptr;
+        prev->next = nullptr;
 
         ListNode* left = sortList(head);
         ListNode* right = sortList(slow);
