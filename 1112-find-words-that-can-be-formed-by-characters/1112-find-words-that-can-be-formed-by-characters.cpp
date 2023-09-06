@@ -15,14 +15,13 @@ public:
         }
 
         for (auto const& word : words) {
-            vector<int> copyCnt(letterCnt);
+            vector<int> wordCnt(26, 0);
             bool isGood = true;
             for (auto const& c : word) {
-                if (copyCnt[c - 'a'] == 0) {
+                wordCnt[c - 'a']++;
+                if (wordCnt[c - 'a'] > letterCnt[c - 'a']) {
                     isGood = false;
                     break;
-                } else {
-                    copyCnt[c - 'a']--;
                 }
             }
             if (isGood) {
