@@ -11,6 +11,7 @@
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
+        /*
         // Use a vector to store
         // TC: O(nlogn)
         // SC: O(n)
@@ -33,6 +34,54 @@ public:
         }
         cur->next = nullptr;
 
+        return dummy->next;
+        */
+        // divide and conquer way -> merge sort
+        // we find the middle first
+        // then reverse the middle to end and the head to middle part
+        // TC: O(nlogn)
+        // SC: O(1)
+        if (head == nullptr || head->next == nullptr) {
+            return head;
+        }
+
+        ListNode* tmp = nullptr;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while (fast != nullptr && fast->next != nullptr) {
+            tmp = slow;
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+
+        tmp->next = nullptr;
+
+        ListNode* left = sortList(head);
+        ListNode* right = sortList(slow);
+        return mergeList(left, right);
+    }
+
+    ListNode* mergeList(ListNode* node1, ListNode* node2) {
+        ListNode* dummy = new ListNode();
+        ListNode* cur = dummy;
+        while (node1 != nullptr && node2 != nullptr) {
+            if (node1->val > node2->val) {
+                cur->next = node2;
+                node2 = node2->next;
+            } else {
+                cur->next = node1;
+                node1 = node1->next;
+            }
+            cur = cur->next;
+        }
+        
+        if (node1 != nullptr) {
+            cur->next = node1;
+        }
+
+        if (node2 != nullptr) {
+            cur->next = node2;
+        }
         return dummy->next;
     }
 };
