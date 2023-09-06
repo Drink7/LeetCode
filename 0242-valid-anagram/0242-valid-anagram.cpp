@@ -19,5 +19,6 @@ public:
             }
         }
         return true;
+        // Solution 2: use a unordermap to store Unicode characters
     }
 };
