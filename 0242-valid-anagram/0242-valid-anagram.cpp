@@ -1,41 +1,22 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        // TC: O(nlogn)
+        // vector with 26 size
+        // TC: O(m + n)
         // SC: O(1)
-        /*
-        int sLen = s.size();
-        int tLen = t.size();
-        if (sLen != tLen) {
-            return false;
-        }
-        sort(s.begin(), s.end());
-        sort(t.begin(), t.end());
-        for (int i = 0; i < sLen; i++) {
-            if (s[i] != t[i]) {
-                return false;
-            }
-        }
-        return true;
-        */
-        // TC: O(n)
-        // SC: O(1)
-        int dict[26] = {0};
-        int sLen = s.size();
-        int tLen = t.size();
-        if (sLen != tLen) {
-            return false;
+        vector<int> lettersCnt(26, 0);
+        for (auto const& c : s) {
+            lettersCnt[c - 'a']++;
         }
 
-        for (int i = 0; i < sLen; i++) {
-            dict[s[i] - 'a']++;
+        for (auto const& c : t) {
+            lettersCnt[c - 'a']--;
         }
 
-        for (int i = 0; i < sLen; i++) {
-            if (dict[t[i] - 'a'] == 0) {
+        for (int i = 0; i < 26; i++) {
+            if (lettersCnt[i] != 0) {
                 return false;
             }
-            dict[t[i] - 'a']--;
         }
         return true;
     }
