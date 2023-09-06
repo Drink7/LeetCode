@@ -11,34 +11,28 @@
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
-        // use vector <pair> to store the list
-        // rearrange
+        // Use a vector to store
         // TC: O(nlogn)
         // SC: O(n)
-        if (head == nullptr || head->next == nullptr) {
-            return head;
-        }
-
         vector<pair<int, ListNode*>> nodeList;
-        ListNode* prev = head;
-        while (prev != nullptr) {
-            nodeList.push_back({prev->val, prev});
-            prev = prev->next;
-        }
-
-        // sort by val
-        sort(nodeList.begin(), nodeList.end(), [](pair<int, ListNode*>& a, pair<int, ListNode*>& b) {
-            return a.first < b.first;
-        });
-
-        // rearrange
         ListNode* dummy = new ListNode();
-        head = dummy;
-        for (int i = 0; i < nodeList.size(); i++) {
-            head->next = nodeList[i].second;
+        ListNode* cur = dummy;
+        while (head != nullptr) {
+            nodeList.push_back({head->val, head});
             head = head->next;
         }
-        head->next = nullptr;
+
+        // sort the vector
+        sort(nodeList.begin(), nodeList.end(), [](pair<int, ListNode*> p1, pair<int, ListNode*> p2) {
+            return p1.first < p2.first;
+        });
+
+        for (auto const& p : nodeList) {
+            cur->next = p.second;
+            cur = cur->next;
+        }
+        cur->next = nullptr;
+
         return dummy->next;
     }
 };
