@@ -1,52 +1,18 @@
 class Solution {
-/*
 public:
     int numIslands(vector<vector<char>>& grid) {
-        // Use DFS to traverse all 1's
-        // when we have visit 1, change the 1 to 0, so we don't need the visited grid
-        // TC: O(mn)
-        // SC: O(mn) // recursive depth
-        // DFS
+        // use union find
+        // traverse each grid, check the top and left side
+        // if top and left side is 1 too, union them
+        // TC: O(m * n)
+        // SC: O(1)
         int m = grid.size();
         int n = grid[0].size();
-        int count = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '1') {
-                    // start dfs
-                    dfs(grid, i, j);
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
+        parent.resize(m * n);
+        rank.resize(m * n);
 
-    void dfs(vector<vector<char>>& grid, int row, int col) {
-        if (row < 0 || row >= grid.size() || col < 0 || col >= grid[0].size() || grid[row][col] == '0') {
-            return;
-        }
-
-        grid[row][col] = '0';
-        for (int i = 0; i < 4; i++) {
-            dfs(grid, row + dRow[i], col + dCol[i]);
-        }
-    }
-private:
-    int dRow[4] = {0, 1, 0, -1};
-    int dCol[4] = {1, 0, -1, 0};
-*/
-/*
-public:
-    int numIslands(vector<vector<char>>& grid) {
-        // Use Union find (2d union find, use total islands as count, when union, count--)
-        // TC: O(mn)
-        // SC: O(mn)
-        int m = grid.size();
-        int n = grid[0].size();
-        parent.resize(m*n);
-        rank.resize(m*n);
-        for (int i = 0; i < m*n; i++) {
+        // init
+        for (int i = 0; i < m * n; i++) {
             parent[i] = i;
             rank[i] = 1;
         }
@@ -55,20 +21,21 @@ public:
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == '1') {
                     lands++;
-                    // check top
+
+                    // union
                     if (i - 1 >= 0 && grid[i - 1][j] == '1') {
-                        unionHelper((i - 1) * n + j, i * n + j);
+                        unionHelper(i * n + j, (i - 1) * n + j);
                     }
 
-                    // check left
                     if (j - 1 >= 0 && grid[i][j - 1] == '1') {
-                        unionHelper(i * n + j - 1, i * n + j);
+                        unionHelper(i * n + j, i * n + j - 1);
                     }
                 }
             }
         }
         return lands;
     }
+
 
     void unionHelper(int x, int y) {
         int rootX = findHelper(x);
@@ -94,53 +61,9 @@ public:
         }
         return parent[x];
     }
+
 private:
     vector<int> parent;
     vector<int> rank;
     int lands = 0;
-*/
-
-public:
-    int numIslands(vector<vector<char>>& grid) {
-        // Use BFS to traverse all 1's
-        // when we have visit 1, change the 1 to 0, so we don't need the visited grid
-        // TC: O(mn)
-        // SC: O(min(m, n))
-        queue<pair<int, int>> landQueue;
-        int m = grid.size();
-        int n = grid[0].size();
-        int lands = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '1') {
-                    landQueue.push({i, j});
-                    grid[i][j] = '0';
-                    while (!landQueue.empty()) {
-                        int queueSize = landQueue.size();
-                        for (int k = 0; k < queueSize; k++) {
-                            pair<int, int> p = landQueue.front();
-                            landQueue.pop();
-
-                            // check its 4 dir
-                            for (int l = 0; l < 4; l++) {
-                                int newRow = p.first + dRow[l];
-                                int newCol = p.second + dCol[l];
-                                if (newRow >= 0 && newRow < m &&
-                                    newCol >= 0 && newCol < n &&
-                                    grid[newRow][newCol] == '1') {
-                                    landQueue.push({newRow, newCol});
-                                    grid[newRow][newCol] = '0';
-                                }
-                            }
-                        }
-                    }
-                    lands++;
-                }
-            }
-        }
-        return lands;
-    }
-private:
-    int dRow[4] = {0, 1, 0, -1};
-    int dCol[4] = {1, 0, -1, 0};
 };
