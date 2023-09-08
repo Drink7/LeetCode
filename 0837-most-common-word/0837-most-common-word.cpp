@@ -21,9 +21,9 @@ public:
         unordered_map<string, int> strDict;
         int maxCnt = INT_MIN;
         string result = "";
-        istringstream iss(paragraph);
+        stringstream ss(paragraph);
         string lower_word;
-        while (iss >> lower_word) {
+        while (ss >> lower_word) {
             strDict[lower_word]++;
         }
 
@@ -32,7 +32,6 @@ public:
         }
 
         for (auto const& p : strDict) {
-            cout << p.first << endl;
             if (p.second > maxCnt) {
                 maxCnt = p.second;
                 result = p.first;
