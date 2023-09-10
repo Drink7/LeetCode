@@ -5,13 +5,9 @@ public:
         // TC: O(n)
         // SC: O(1)
         int n = nums.size();
-        int result = 0;
+        int result = n;
         for (int i = 0; i < n; i++) {
-            result = result ^ nums[i];
-        }
-
-        for (int i = 0; i <= n; i++) {
-            result = result ^ i;
+            result = result ^ nums[i] ^ i;
         }
         return result;
     }
