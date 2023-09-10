@@ -12,6 +12,7 @@
 class Solution {
 public:
     void flatten(TreeNode* root) {
+        /*
         // preorder traversal
         // use a vector to store
         // TC: O(n)
@@ -29,6 +30,27 @@ public:
         }
         nodeList.back()->left = nullptr;
         nodeList.back()->right = nullptr;
+        */
+
+        // postorder
+        // TC: O(n)
+        // SC: O(1)
+        if (root == nullptr) {
+            return;
+        }
+        TreeNode* leftNode = root->left;
+        TreeNode* rightNode = root->right;
+
+        flatten(root->left);
+        flatten(root->right);
+
+        root->left = nullptr;
+        root->right = leftNode;
+
+        while (root->right != nullptr) {
+            root = root->right;
+        }
+        root->right = rightNode;
     }
 
     void flattenHelper(TreeNode* node) {
