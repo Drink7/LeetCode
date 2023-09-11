@@ -1,7 +1,7 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        // use two pointer with current pointer
+        // two pointer
         // TC: O(n)
         // SC: O(1)
         int left = 0;
@@ -11,11 +11,11 @@ public:
             if (nums[cur] == 2) {
                 swap(nums[cur], nums[right]);
                 right--;
-            } else if (nums[cur] == 0) {
-                swap(nums[cur], nums[left]);
-                left++;
+            } else if (nums[cur] == 1) {
                 cur++;
             } else {
+                swap(nums[cur], nums[left]);
+                left++;
                 cur++;
             }
         }
