@@ -9,7 +9,7 @@ public:
         return result;
     }
 
-    void combineHelper(vector<vector<int>>& result, vector<int> combination, int index, int n, int k) {
+    void combineHelper(vector<vector<int>>& result, vector<int>& combination, int index, int n, int k) {
         if (combination.size() == k) {
             result.push_back(combination);
             return;
