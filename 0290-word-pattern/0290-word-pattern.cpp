@@ -1,41 +1,31 @@
 class Solution {
 public:
     bool wordPattern(string pattern, string s) {
-        // Similar to Isomorphic Strings
-        // Split string skill using stringstream
+        // similar to Isomorphic Strings
         // TC: O(n)
         // SC: O(n)
-
-        // Skill 1
-        vector<string> splitList;
-        string token;
+        vector<string> strArr;
+        string token = "";
         stringstream ss(s);
 
-        /*
-        // Skill 1
-        while (getline(ss, token, ' ')) {
-            splitList.push_back(token);
-        }
-        */
-
-        // Skill 2
         while (ss >> token) {
-            splitList.push_back(token);
+            strArr.push_back(token);
         }
 
-        if (splitList.size() != pattern.size()) {
+        if (pattern.size() != strArr.size()) {
             return false;
         }
 
-        unordered_map<string, char> pDict;
-        unordered_map<char, string> sDict;
+        unordered_map<char, string> pDict;
+        unordered_map<string, char> sDict;
         for (int i = 0; i < pattern.size(); i++) {
-            sDict[pattern[i]] = splitList[i];
-            pDict[splitList[i]] = pattern[i];
+            pDict[pattern[i]] = strArr[i];
+            sDict[strArr[i]] = pattern[i];
         }
 
+        // check
         for (int i = 0; i < pattern.size(); i++) {
-            if (sDict[pattern[i]] != splitList[i] || pDict[splitList[i]] != pattern[i]) {
+            if (pDict[pattern[i]] != strArr[i] || sDict[strArr[i]] != pattern[i]) {
                 return false;
             }
         }
