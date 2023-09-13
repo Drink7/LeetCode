@@ -20,6 +20,7 @@ public:
         while (head != nullptr) {
             if (head->val == val) {
                 prev->next = head->next;
+                // remove memory leak
                 delete head;
                 head = prev->next;
             } else {
