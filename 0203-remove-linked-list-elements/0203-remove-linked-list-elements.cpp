@@ -15,17 +15,19 @@ public:
         // TC: O(n)
         // SC: O(1)
         ListNode* dummy = new ListNode();
-        ListNode* cur = dummy;
+        ListNode* prev = dummy;
+        dummy->next = head;
         while (head != nullptr) {
-            while (head != nullptr && head->val == val) {
-                head = head->next;
+            if (head->val == val) {
+                prev->next = head->next;
+            } else {
+                prev = head;
             }
-            cur->next = head;
-            cur = head;
-            if (head != nullptr) {
-                head = head->next;
-            }
+            head = head->next;
         }
-        return dummy->next;
+        // remove memory leak
+        head = dummy->next;
+        delete dummy;
+        return head;
     }
 };
