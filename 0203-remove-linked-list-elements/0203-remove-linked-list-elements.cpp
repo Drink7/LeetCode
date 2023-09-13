@@ -20,10 +20,12 @@ public:
         while (head != nullptr) {
             if (head->val == val) {
                 prev->next = head->next;
+                delete head;
+                head = prev->next;
             } else {
                 prev = head;
+                head = head->next;
             }
-            head = head->next;
         }
         // remove memory leak
         head = dummy->next;
