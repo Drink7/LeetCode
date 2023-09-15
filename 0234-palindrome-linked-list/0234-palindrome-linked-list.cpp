@@ -11,31 +11,47 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        // Use two pointer with fast slow pointer to find the middle node
-        // left pointer goes backward
-        // right pointer goes forward
+        // two pointer and find the middle point
+        // use a dummy node
+        // TC: O(n)
+        // SC: O(1)
+        if (head == nullptr) {
+            return true;
+        }
+
+        ListNode* dummy = new ListNode();
+        dummy->next = head;
+
+        ListNode* fast = dummy;
+        ListNode* slow = dummy;
         ListNode* prev = nullptr;
-        ListNode* fast = head;
-        ListNode* slow = head;
+
         while (fast != nullptr && fast->next != nullptr) {
+            // fast
             fast = fast->next->next;
+
+            // slow
             ListNode* next = slow->next;
             slow->next = prev;
             prev = slow;
             slow = next;
         }
 
-        // odd case
-        if (fast != nullptr) {
+        // start check palindrome
+        ListNode* right = slow->next;
+        slow->next = prev;
+
+        // odd numbers
+        if (fast == nullptr) {
             slow = slow->next;
         }
 
-        while (prev != nullptr) {
-            if (prev->val != slow->val) {
+        while (slow != nullptr && right != nullptr) {
+            if (slow->val != right->val) {
                 return false;
             }
-            prev = prev->next;
             slow = slow->next;
+            right = right->next;
         }
         return true;
     }
