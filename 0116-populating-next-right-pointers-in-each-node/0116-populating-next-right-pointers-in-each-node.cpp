@@ -53,7 +53,8 @@ public:
         return root;
         */
 
-        // constant space
+        /*
+        // constant space iterative
         // TC: O(n)
         // SC: O(1)
         Node* leftMost = root;
@@ -72,5 +73,26 @@ public:
             leftMost = leftMost->left;
         }
         return root;
+        */
+
+        // constant space recursive
+        // TC: O(n)
+        // SC: O(1)
+        if (root == nullptr) {
+            return root;
+        }
+        connectHelper(root->left, root->right);
+        return root;
+    }
+
+    void connectHelper(Node* left, Node* right) {
+        if (left == nullptr && right == nullptr) {
+            return;
+        }
+
+        left->next = right;
+        connectHelper(left->left, left->right);
+        connectHelper(left->right, right->left);
+        connectHelper(right->left, right->right);
     }
 };
