@@ -4,18 +4,17 @@ public:
         // use map to store (val, index)
         // return the answer
         // TC: O(nlogn)
-        // SC: O(1)
+        // SC: O(n)
+        vector<int> copyArr(arr);
         vector<int> result;
-        map<int, int> rankMap;
-        for (int i = 0; i < arr.size(); i++) {
-            rankMap[arr[i]] = i;
-        }
+        unordered_map<int, int> rankMap;
 
-        // map has been sorted, now traverse map to assign rank
-        int rank = 1;
-        for (auto const& p : rankMap) {
-            rankMap[p.first] = rank;
-            rank++;
+        sort(copyArr.begin(), copyArr.end());
+        for (int i = 0; i < copyArr.size(); i++) {
+            int val = copyArr[i];
+            if (rankMap.count(val) < 1) {
+                rankMap[copyArr[i]] = rankMap.size() + 1;
+            }
         }
 
         // traverse arr again
