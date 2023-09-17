@@ -19,6 +19,7 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
+        /*
         // BFS + queue
         // TC: O(n)
         // SC: O(n)
@@ -48,6 +49,27 @@ public:
                     q.push(node->right);
                 }
             }
+        }
+        return root;
+        */
+
+        // constant space
+        // TC: O(n)
+        // SC: O(1)
+        Node* leftMost = root;
+        while (leftMost != nullptr) {
+            Node* cur = leftMost;
+            while (cur != nullptr) {
+                if (cur->left != nullptr) {
+                    cur->left->next = cur->right;
+                }
+
+                if (cur->right != nullptr && cur->next != nullptr) {
+                    cur->right->next = cur->next->left;
+                }
+                cur = cur->next;
+            }
+            leftMost = leftMost->left;
         }
         return root;
     }
