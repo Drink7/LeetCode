@@ -18,6 +18,7 @@ public:
             return head;
         }
 
+        /*
         ListNode* dummy = new ListNode();
         ListNode* smallHead = dummy;
         ListNode* largeHead = dummy;
@@ -48,5 +49,24 @@ public:
         smallCur->next = (largeHead == dummy) ? nullptr : largeHead;
         largeCur->next = nullptr;
         return (smallHead != dummy) ? smallHead : largeHead;
+        */
+
+        ListNode* dummy1 = new ListNode();
+        ListNode* dummy2 = new ListNode();
+        ListNode* cur1 = dummy1;
+        ListNode* cur2 = dummy2;
+        while (head != nullptr) {
+            if (head->val < x) {
+                cur1->next = head;
+                cur1 = cur1->next;
+            } else {
+                cur2->next = head;
+                cur2 = cur2->next;
+            }
+            head = head->next;
+        }
+        cur2->next = nullptr;
+        cur1->next = dummy2->next;
+        return dummy1->next;
     }
 };
