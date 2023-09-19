@@ -1,29 +1,29 @@
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        // divide to left and right part multiply sum
-        // multiply the left and right part with the same index
+        // calculate from left to right
+        // then caculate from right to left
         // TC: O(n)
-        // SC: O(n)
+        // SC: O(1)
         int n = nums.size();
-        vector<int> leftPart(n);
-        vector<int> rightPart(n);
-        vector<int> result(n);
-        // calculate left part
-        leftPart[0] = 1;
-        for (int i = 1; i < n; i++) {
-            leftPart[i] = leftPart[i - 1] * nums[i - 1];
-        }
+        vector<int> result(n, 1);
 
-        // calculate right part
-        rightPart[n - 1] = 1;
-        for (int i = n - 2; i >= 0; i--) {
-            rightPart[i] = rightPart[i + 1] * nums[i + 1];
-        }
-
-        // calculate result
+        // from left to right
+        int base = 1;
         for (int i = 0; i < n; i++) {
-            result[i] = leftPart[i] * rightPart[i];
+            if (i > 0) {
+                base = base * nums[i - 1];
+            }
+            result[i] = base;
+        }
+
+        // from right to left
+        base = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            if (i < n - 1) {
+                base = base * nums[i + 1];
+            }
+            result[i] = result[i] * base;
         }
         return result;
     }
