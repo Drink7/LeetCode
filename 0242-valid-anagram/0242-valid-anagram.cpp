@@ -1,24 +1,20 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        // vector with 26 size
-        // TC: O(m + n)
+        // sort and compare
+        // TC: O(nlogn)
         // SC: O(1)
-        vector<int> lettersCnt(26, 0);
-        for (auto const& c : s) {
-            lettersCnt[c - 'a']++;
+        if (s.size() != t.size()) {
+            return false;
         }
 
-        for (auto const& c : t) {
-            lettersCnt[c - 'a']--;
-        }
-
-        for (int i = 0; i < 26; i++) {
-            if (lettersCnt[i] != 0) {
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] != t[i]) {
                 return false;
             }
         }
         return true;
-        // Solution 2: use a unordermap to store Unicode characters
     }
 };
