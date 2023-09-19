@@ -1,8 +1,7 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        // if not alpha or digit, go with next letter
-        // if yes, tolower and check left, right pointer
+        // two pointer
         // TC: O(n)
         // SC: O(1)
         int left = 0;
@@ -15,8 +14,7 @@ public:
             while (left <= right && !isalpha(s[right]) && !isdigit(s[right])) {
                 right--;
             }
-
-            // all to lowercase and check
+            
             if (left <= right && tolower(s[left]) != tolower(s[right])) {
                 return false;
             }
