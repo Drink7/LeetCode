@@ -1,29 +1,13 @@
 class Solution {
 public:
     int strStr(string haystack, string needle) {
-        // Traverse two string
-        // TC: O(m * n)
+        // find api
+        // TC: O(mn)
         // SC: O(1)
-        if (needle.size() > haystack.size()) {
+        if (haystack.size() < needle.size()) {
             return -1;
         }
 
-        int m = haystack.size();
-        int n = needle.size();
-        for (int i = 0; i < m - n + 1; i++) {
-            if (haystack[i] == needle[0]) {
-                int j = 1;
-                for (; j < n; j++) {
-                    if (haystack[i + j] != needle[j]) {
-                        break;
-                    }
-                }
-
-                if (j == n) {
-                    return i;
-                }
-            }
-        }
-        return -1;
+        return (haystack.find(needle) == string::npos) ? -1 : haystack.find(needle);
     }
 };
