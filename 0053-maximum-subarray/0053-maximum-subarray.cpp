@@ -1,18 +1,16 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        // 1D DP Array
-        // check the last array value
+        // dynamic programming, 1-D
         // TC: O(n)
         // SC: O(n)
-        int n = nums.size();
-        int maxVal = nums[0];
-        vector<int> dp(n);
+        vector<int> dp(nums.size());
+        int result = nums[0];
         dp[0] = nums[0];
-        for (int i = 1; i < n; i++) {
-            dp[i] = (dp[i - 1] + nums[i] > nums[i]) ? dp[i - 1] + nums[i] : nums[i];
-            maxVal = max(maxVal, dp[i]);
+        for (int i = 1; i < nums.size(); i++) {
+            dp[i] = max(dp[i - 1] + nums[i], nums[i]);
+            result = max(result, dp[i]);
         }
-        return maxVal;
+        return result;
     }
 };
