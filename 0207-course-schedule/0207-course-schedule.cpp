@@ -4,13 +4,13 @@ public:
         // topological sort
         // TC: O(V + E)
         // SC: O(V + E)
-        unordered_map<int, vector<int>> graph;
         vector<int> inDegree(numCourses, 0);
+        unordered_map<int, vector<int>> graph;
 
         // build graph
-        for (auto const& prerequisite : prerequisites) {
-            int preq = prerequisite[1];
-            int cur = prerequisite[0];
+        for (int i = 0; i < prerequisites.size(); i++) {
+            int preq = prerequisites[i][1];
+            int cur = prerequisites[i][0];
             graph[preq].push_back(cur);
             inDegree[cur]++;
         }
@@ -23,7 +23,6 @@ public:
             }
         }
 
-        // Build the sorted order
         vector<int> sortedCourse;
         while (!q.empty()) {
             int qSize = q.size();
