@@ -15,24 +15,23 @@ public:
             inDegree[cur]++;
         }
 
-        // bfs queue
+        // Find all sources
         queue<int> q;
-        int count = 0;
-
-        // put unrelated
         for (int i = 0; i < numCourses; i++) {
             if (inDegree[i] == 0) {
                 q.push(i);
             }
         }
 
+        // Build the sorted order
+        vector<int> sortedCourse;
         while (!q.empty()) {
             int qSize = q.size();
             for (int i = 0; i < qSize; i++) {
                 int course = q.front();
                 q.pop();
 
-                count++;
+                sortedCourse.push_back(course);
 
                 for (int j = 0; j < graph[course].size(); j++) {
                     int next = graph[course][j];
@@ -43,6 +42,6 @@ public:
                 }
             }
         }
-        return count == numCourses;
+        return sortedCourse.size() == numCourses;
     }
 };
