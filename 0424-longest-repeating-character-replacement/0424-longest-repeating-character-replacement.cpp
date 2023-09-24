@@ -1,54 +1,39 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        /*
-        // max char number + k >= current window size, it means we can replace all the distinct char in our window
-        // else, it means we can not replace all the distinct char in the window
-        // move left pointer
+        // vector to store letter count
+        // string.size() > max letter cnt + k
+        // need to move left
+        // or continue moving right
         // TC: O(n)
         // SC: O(n)
-        unordered_map<char, int> dict;
-        int n = s.size();
+        vector<int> letterArr(26, 0);
         int left = 0;
         int right = 0;
-        int maxLen = 0;
-        while (right < n) {
-            dict[s[right]]++;
-            maxLen = max(maxLen, dict[s[right]]);
-            if (maxLen + k < right - left + 1) {
-                dict[s[left]]--;
-                left++;
-            }
-            right++;
-        }
-        return right - left;
-        */
-        // Sliding window with more readable find max
-        // TC: O(n)
-        // SC: O(n)
-        // store the char freq in[left, right]
-        unordered_map<char, int> dict;
         int n = s.size();
-        int left = 0;
-        int right = 0;
-        int maxLen = 0;
+        int result = 0;
         while (right < n) {
-            dict[s[right]]++;
-            while (findMaxCnt(dict) + k < right - left + 1) {
-                dict[s[left]]--;
+            char rightChar = s[right];
+            letterArr[rightChar - 'A']++;
+
+            // left move condition
+            while (left < right && right - left + 1 > k + findMax(letterArr)) {
+                letterArr[s[left] - 'A']--;
                 left++;
             }
-            maxLen = max(maxLen, right - left + 1);
+            result = max(result, right - left + 1);
             right++;
         }
-        return maxLen;
+        return result;
     }
 
-    int findMaxCnt(unordered_map<char, int>& dict) {
-        int maxCnt = INT_MIN;
-        for (auto const& p : dict) {
-            maxCnt = max(maxCnt, p.second);
+    int findMax(vector<int>& nums) {
+        int result = 0;
+        for (auto const& num : nums) {
+            if (num > result) {
+                result = num;
+            }
         }
-        return maxCnt;
+        return result;
     }
 };
