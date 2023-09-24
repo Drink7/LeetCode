@@ -9,15 +9,17 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        // floyd cycle detection
-        // TC: O(n)
-        // SC: O(1)
+        // fast slow pointer to detect cycle
+        if (head == nullptr) {
+            return false;
+        }
+
         ListNode* fast = head;
         ListNode* slow = head;
         while (fast != nullptr && fast->next != nullptr) {
             fast = fast->next->next;
             slow = slow->next;
-            if (fast == slow) {
+            if (slow == fast) {
                 return true;
             }
         }
