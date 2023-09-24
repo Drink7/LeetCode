@@ -12,8 +12,6 @@
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        // postorder to traverse treenode
-        // swap the left node and right node
         // TC: O(n)
         // SC: O(1)
         if (root == nullptr) {
@@ -22,9 +20,8 @@ public:
 
         TreeNode* left = invertTree(root->left);
         TreeNode* right = invertTree(root->right);
-        TreeNode* tmp = left;
         root->left = right;
-        root->right = tmp;
+        root->right = left;
         return root;
     }
 };
