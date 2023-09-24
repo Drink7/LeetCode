@@ -11,34 +11,9 @@
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        /*
-        // store all node then do interleave
+        // method 1: store all nodes and reorder
+        // method fast slow pointer
         // TC: O(n)
-        // SC: O(1)
-        vector<ListNode*> list;
-        while (head != nullptr) {
-            list.push_back(head);
-            head = head->next;
-        }
-
-        // interleave the nodes
-        int left = 0;
-        int right = list.size() - 1;
-        while (left < right) {
-            list[left]->next = list[right];
-            left++;
-
-            // Note the corner case
-            if (left < right) {
-                list[right]->next = list[left];
-                right--;
-            }
-        }
-        list[right]->next = nullptr;
-        */
-
-        // Two Pointer with fast slow pointer
-        // TC: O(logn)
         // SC: O(1)
         ListNode* fast = head;
         ListNode* slow = head;
@@ -47,8 +22,11 @@ public:
             slow = slow->next;
         }
 
+        // Reverse right
         ListNode* leftPart = head;
-        ListNode* rightPart = reverse(slow);
+        ListNode* rightPart = reverseList(slow);
+
+        // concat left & right
         while (leftPart != nullptr && rightPart != nullptr) {
             ListNode* next = leftPart->next;
             leftPart->next = rightPart;
@@ -59,18 +37,20 @@ public:
             rightPart = next;
         }
 
-        if (leftPart != nullptr) {
+        if (leftPart) {
             leftPart->next = nullptr;
         }
+
+        // no need to handle rightPart since the leftPart sizr would always >= rightPart
     }
 
-    ListNode* reverse(ListNode* head) {
+    ListNode* reverseList(ListNode* node) {
         ListNode* prev = nullptr;
-        while (head != nullptr) {
-            ListNode* next = head->next;
-            head->next = prev;
-            prev = head;
-            head = next;
+        while (node != nullptr) {
+            ListNode* next = node->next;
+            node->next = prev;
+            prev = node;
+            node = next;
         }
         return prev;
     }
