@@ -31,10 +31,9 @@ public:
             slow = slow->next;
         }
     
-        if (slow->next) {
-            slow->next = slow->next->next;
-        }
-        
-        return dummy->next;;
+        slow->next = slow->next->next;
+        ListNode* cur = dummy->next;
+        delete(dummy);
+        return cur;
     }
 };
