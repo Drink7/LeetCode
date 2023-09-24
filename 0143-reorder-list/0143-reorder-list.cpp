@@ -33,6 +33,8 @@ public:
             rightPart = next;
         }
 
+
+
         if (leftPart) {
             leftPart->next = nullptr;
         }
