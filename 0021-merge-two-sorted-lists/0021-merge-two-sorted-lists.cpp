@@ -11,34 +11,12 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        /*
-        // recursion
-        // TC: O(n * m), n & m is list1 & list2 array size
-        // SC: O(1)
-        if (list1 == nullptr) {
-            return list2;
-        }
-
-        if (list2 == nullptr) {
-            return list1;
-        }
-
-        if (list1->val > list2->val) {
-            list2->next = mergeTwoLists(list1, list2->next);
-            return list2;
-        } else {
-            list1->next = mergeTwoLists(list1->next, list2);
-            return list1;
-        }
-        */
         // Iterative
-        // dummy node
-        // TC: O(n * m), n & m is list1 & list2 array size
+        // TC: O(m + n)
         // SC: O(1)
-        ListNode *dummy = new ListNode();
-        ListNode *cur = dummy;
-
-        while (list1 != nullptr && list2 != nullptr) {
+        ListNode* dummy = new ListNode();
+        ListNode* cur = dummy;
+        while (list1 && list2) {
             if (list1->val > list2->val) {
                 cur->next = list2;
                 list2 = list2->next;
@@ -49,14 +27,16 @@ public:
             cur = cur->next;
         }
 
-        if (list1 != nullptr) {
+        if (list1) {
             cur->next = list1;
         }
 
-        if (list2 != nullptr) {
+        if (list2) {
             cur->next = list2;
         }
 
-        return dummy->next;
+        cur = dummy->next;
+        delete(dummy);
+        return cur;
     }
 };
