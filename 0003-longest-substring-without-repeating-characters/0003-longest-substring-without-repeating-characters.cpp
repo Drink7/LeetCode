@@ -1,22 +1,22 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        // Sliding window basic
+        // sliding windows with unordered_set
         // TC: O(n)
-        // SC: O(1)
-        int n = s.size();
+        // SC: O(n)
+        unordered_set<char> charSet;
         int left = 0;
         int right = 0;
-        unordered_set<char> dict;
+        int n = s.size();
         int result = 0;
-
         while (right < n) {
-            char cur = s[right];
-            while (left <= right && dict.count(cur)) {
-                dict.erase(s[left]);
+            char rightChar = s[right];
+            while (charSet.count(rightChar)) {
+                charSet.erase(s[left]);
                 left++;
             }
-            dict.insert(cur);
+            charSet.insert(rightChar);
+
             result = max(result, right - left + 1);
             right++;
         }
