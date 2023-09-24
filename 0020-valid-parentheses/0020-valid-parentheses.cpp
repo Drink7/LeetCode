@@ -1,30 +1,29 @@
 class Solution {
 public:
     bool isValid(string s) {
-        // Use stack
+        // stack store index
         // TC: O(n)
         // SC: O(n)
-        int n = s.size();
-        stack<char> parentheseStack;
-
-        // start push from left
-        int left = 0;
-        while (left < n) {
-            // Check when we push
-            if (parentheseStack.empty()) {
-                parentheseStack.push(s[left]);
+        stack<int> validStack;
+        for (int i = 0; i < s.size(); i++) {
+            if (validStack.empty()) {
+                validStack.push(i);
             } else {
-                if ((parentheseStack.top() == '(' && s[left] == ')') ||
-                    (parentheseStack.top() == '[' && s[left] == ']') ||
-                    (parentheseStack.top() == '{' && s[left] == '}')) {
-                    parentheseStack.pop();
+                char c = s[i];
+                if (c == ')' || c == '}' || c == ']') {
+                    char top = s[validStack.top()];
+                    if (top == '(' && c == ')' ||
+                        top == '{' && c == '}' ||
+                        top == '[' && c == ']') {
+                        validStack.pop();
+                    } else {
+                        validStack.push(i);
+                    }
                 } else {
-                    parentheseStack.push(s[left]);
+                    validStack.push(i);
                 }
             }
-            left++;
         }
-
-        return parentheseStack.empty();
+        return validStack.empty();
     }
 };
