@@ -1,46 +1,45 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        // two pointer with hash table (unordered_map)
-        // TC: O(mn)
-        // SC: O(mn)
+        // sliding window
+        // store minimum then move left if the window include all letter in t 
+        // TC: O(m * n)
+        // SC: O(m + n)
         if (s.size() < t.size()) {
             return "";
         }
 
-        unordered_map<char, int> dict;
+        unordered_map<char, int> tDict;
+
+        // store t
         for (auto const& c : t) {
-            dict[c]++;
+            tDict[c]++;
         }
 
         int left = 0;
         int right = 0;
         int n = s.size();
-        int minLen = INT_MAX;
-        int minLeft = 0;
+        int minStart = 0;
+        int minLength = INT_MAX;
         int counter = t.size();
         while (right < n) {
-            if (dict[s[right]] > 0) {
+            if (tDict[s[right]] > 0) {
                 counter--;
             }
-            dict[s[right]]--;
-
-            // Move left
-            while (left <= right && counter == 0) {
-                if (minLen > right - left + 1) {
-                    minLen = right - left + 1;
-                    minLeft = left;
+            tDict[s[right]]--;
+            while (counter == 0) {
+                if (minLength > right - left + 1) {
+                    minLength = right - left + 1;
+                    minStart = left;
                 }
-                dict[s[left]]++;
-                if (dict[s[left]] > 0) {
+                tDict[s[left]]++;
+                if (tDict[s[left]] > 0) {
                     counter++;
                 }
                 left++;
             }
-
-            // move right
             right++;
         }
-        return minLen == INT_MAX ? "" : s.substr(minLeft, minLen);
+        return minLength == INT_MAX ? "" : s.substr(minStart, minLength);
     }
 };
