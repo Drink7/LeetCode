@@ -13,6 +13,11 @@ public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         // TC: O(logn)
         // SC: O(1)
+        /*
+        if (root == nullptr) {
+            return root;
+        }
+
         if (root->val > p->val && root->val > q->val) {
             return lowestCommonAncestor(root->left, p, q);
         } else if (root->val < p->val && root->val < q->val) {
@@ -20,5 +25,17 @@ public:
         } else {
             return root;
         }
+        */
+
+        while (root) {
+            if (root->val > p->val && root->val > q->val) {
+                root = root->left;
+            } else if (root->val < p->val && root->val < q->val) {
+                root = root->right;
+            } else {
+                break;
+            }
+        }
+        return root;
     }
 };
