@@ -12,8 +12,8 @@
 class Solution {
 public:
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        // TC: O(n), n is root tree size
-        // SC: O(n)
+        // TC: O(m * n), m is root tree size and n is subRoot tree size
+        // SC: O(m)
         if (root == nullptr) {
             return false;
         }
