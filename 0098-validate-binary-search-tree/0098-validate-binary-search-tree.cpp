@@ -12,28 +12,24 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        // BST -> inorder
+        // MIN MAX
         // TC: O(n)
         // SC: O(n)
-        traverseBST(root);
-
-        for (int i = 0; i < bstList.size() - 1; i++) {
-            if (bstList[i] >= bstList[i + 1]) {
-                return false;
-            }
-        }
-        return true;
+        
+        return checkValid(root, LONG_MIN, LONG_MAX);
     }
 
-    void traverseBST(TreeNode* root) {
+    bool checkValid(TreeNode* root, long min, long max) {
         if (root == nullptr) {
-            return;
+            return true;
         }
 
-        traverseBST(root->left);
-        bstList.push_back(root->val);
-        traverseBST(root->right);
+        if (root->val > min && root->val < max) {
+            return checkValid(root->left, min, root->val) && checkValid(root->right, root->val, max);
+        } else {
+            return false;
+        }
     }
 private:
-    vector<int> bstList;
+    TreeNode* last;
 };
