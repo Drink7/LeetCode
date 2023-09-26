@@ -10,18 +10,14 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        // Use unordered_set to store ancestor nodes of p
-        // then traverse q, if root->left or root->right not existed in set, answer!
-        // else, keep tracking
-        // TC: O(n)
-        // SC: O(n)
-        if (root == nullptr || p == root || q == root) {
+        // TC: O(logn)
+        // SC: O(logn)
+        if (root == nullptr || root == p || root == q) {
             return root;
         }
 
         TreeNode* left = lowestCommonAncestor(root->left, p, q);
         TreeNode* right = lowestCommonAncestor(root->right, p, q);
-
         if (left && right) {
             return root;
         } else {
