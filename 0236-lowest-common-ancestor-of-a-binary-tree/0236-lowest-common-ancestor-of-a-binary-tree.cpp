@@ -10,8 +10,8 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        // TC: O(logn)
-        // SC: O(logn)
+        // TC: O(n)
+        // SC: O(n)
         if (root == nullptr || root == p || root == q) {
             return root;
         }
