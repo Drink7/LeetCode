@@ -12,8 +12,8 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        // BFS using queue
-        // TC: O(n)
+        // Use BFS
+        // TC: O(n), n is the tree node count
         // SC: O(n)
         vector<vector<int>> result;
         if (root == nullptr) {
@@ -23,14 +23,13 @@ public:
         queue<TreeNode*> q;
         q.push(root);
         while (!q.empty()) {
+            vector<int> level;
             int qSize = q.size();
-            vector<int> levelList;
             for (int i = 0; i < qSize; i++) {
                 TreeNode* node = q.front();
                 q.pop();
 
-                levelList.push_back(node->val);
-
+                level.push_back(node->val);
                 if (node->left) {
                     q.push(node->left);
                 }
@@ -39,7 +38,7 @@ public:
                     q.push(node->right);
                 }
             }
-            result.push_back(levelList);
+            result.push_back(level);
         }
         return result;
     }
