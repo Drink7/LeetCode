@@ -12,22 +12,28 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        // max min interval
-        // preorder
+        // BST -> inorder
         // TC: O(n)
-        // SC: O(1)
-        return isBSTHelper(root, LONG_MIN, LONG_MAX);
+        // SC: O(n)
+        traverseBST(root);
+
+        for (int i = 0; i < bstList.size() - 1; i++) {
+            if (bstList[i] >= bstList[i + 1]) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    bool isBSTHelper(TreeNode* node, long minVal, long maxVal) {
-        if (node == nullptr) {
-            return true;
+    void traverseBST(TreeNode* root) {
+        if (root == nullptr) {
+            return;
         }
 
-        if (node->val > minVal && node->val < maxVal) {
-            return isBSTHelper(node->left, minVal, node->val) && isBSTHelper(node->right, node->val, maxVal);
-        } else {
-            return false;
-        }
+        traverseBST(root->left);
+        bstList.push_back(root->val);
+        traverseBST(root->right);
     }
+private:
+    vector<int> bstList;
 };
