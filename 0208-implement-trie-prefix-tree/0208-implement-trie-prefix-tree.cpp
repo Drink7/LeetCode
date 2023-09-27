@@ -1,18 +1,18 @@
-class TrieNode {
-public:
-    char val;
-    unordered_map<char, TrieNode*> childMap;
-    bool isWord = false;
-    TrieNode() {
-        val = ' ';
-    }
-
-    TrieNode(char in) {
-        val = in;
-    }
-};
-
 class Trie {
+
+    class TrieNode {
+        public:
+            bool isWord = false;
+            char c;
+            unordered_map<char, TrieNode*> dict;
+            TrieNode() {
+            }
+
+            TrieNode(char val) {
+                c = val;
+            }
+    };
+
 public:
     Trie() {
         root = new TrieNode();
@@ -20,27 +20,23 @@ public:
     
     void insert(string word) {
         TrieNode* cur = root;
-        for (int i = 0; i < word.size(); i++) {
-            char c = word[i];
-            if (cur->childMap.count(c) < 1) {
-                TrieNode* newChar = new TrieNode(c);
-                cur->childMap[c] = newChar;
+        for (auto const& c : word) {
+            if (cur->dict.count(c) < 1) {
+                cur->dict[c] = new TrieNode(c);
             }
-            cur = cur->childMap[c];
+            cur = cur->dict[c];
         }
         cur->isWord = true;
     }
     
     bool search(string word) {
         TrieNode* cur = root;
-        for (int i = 0; i < word.size(); i++) {
-            char c = word[i];
-            if (cur->childMap.count(c) < 1) {
+        for (auto const& c : word) {
+            if (cur->dict.count(c) < 1) {
                 return false;
             }
-            cur = cur->childMap[c];
+            cur = cur->dict[c];
         }
-
         if (cur->isWord) {
             return true;
         } else {
@@ -50,12 +46,11 @@ public:
     
     bool startsWith(string prefix) {
         TrieNode* cur = root;
-        for (int i = 0; i < prefix.size(); i++) {
-            char c = prefix[i];
-            if (cur->childMap.count(c) < 1) {
+        for (auto const& c : prefix) {
+            if (cur->dict.count(c) < 1) {
                 return false;
             }
-            cur = cur->childMap[c];
+            cur = cur->dict[c];
         }
         return true;
     }
