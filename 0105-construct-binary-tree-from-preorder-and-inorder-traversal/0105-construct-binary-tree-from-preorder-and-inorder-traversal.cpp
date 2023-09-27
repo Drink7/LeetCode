@@ -20,7 +20,7 @@ public:
     }
 
     TreeNode* buildHelper(vector<int>& preorder, vector<int>& inorder, int preStart, int inStart, int inEnd) {
-        if (preStart > preorder.size() - 1 || inStart > inEnd) {
+        if (inStart > inEnd) {
             return nullptr;
         }
 
