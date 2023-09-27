@@ -24,7 +24,6 @@ public:
             return nullptr;
         }
 
-
         int rootVal = preorder[preStart];
         int inorderRootId = 0;
         for (int i = inStart; i <= inEnd; i++) {
