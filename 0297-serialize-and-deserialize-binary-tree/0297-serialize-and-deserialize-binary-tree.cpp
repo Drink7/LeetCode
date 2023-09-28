@@ -12,7 +12,7 @@ public:
 
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
-        // postorder
+        // preorder
         // TC: O(n)
         // SC: O(logh)
         if (root == nullptr) {
