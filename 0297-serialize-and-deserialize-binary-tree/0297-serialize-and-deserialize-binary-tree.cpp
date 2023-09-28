@@ -12,44 +12,40 @@ public:
 
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
-        // preorder to concat string
+        // postorder
+        // TC: O(n)
+        // SC: O(logh)
         if (root == nullptr) {
             return "N";
+        } else {
+            return to_string(root->val) + "." + serialize(root->left) + "." + serialize(root->right);
         }
-        return to_string(root->val) + "," + serialize(root->left) + "," + serialize(root->right);
     }
 
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
-        // preorder to construct tree
         stringstream ss(data);
-        // Would get TLE when using a vector to tokenize and store all nodes but kept getting TLE 
-        string token;
-        vector<string> tokens;
-        while (getline(ss, token, ',')) {
-            tokens.push_back(token);
+        string token = "";
+        vector<string> dataList;
+        int start = 0;
+        while (getline(ss, token, '.')) {
+            dataList.push_back(token);
         }
-        cout << "token.size(): " << tokens.size() << endl;
-        return deserializeHelper(tokens);
+        return deserializeHelper(dataList, start);
     }
 
-    TreeNode* deserializeHelper(vector<string>& data) {
-        // preorder to construct tree
-        if (data[index] == "N") {
+    TreeNode* deserializeHelper(vector<string>& datas, int& start) {
+        if (datas[start] == "N") {
             return nullptr;
         }
 
-        int val = stoi(data[index]);
-        TreeNode* node = new TreeNode(val);
-        index++;
-        node->left = deserializeHelper(data);
-        index++;
-        node->right = deserializeHelper(data);
-        cout << index << endl;
-        return node;
+        TreeNode* root = new TreeNode(stoi(datas[start]));
+        start++;
+        root->left = deserializeHelper(datas, start);
+        start++;
+        root->right = deserializeHelper(datas, start);
+        return root;
     }
-private:
-    int index = 0;
 };
 
 // Your Codec object will be instantiated and called as such:
