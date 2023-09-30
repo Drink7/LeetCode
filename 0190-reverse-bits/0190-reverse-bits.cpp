@@ -1,29 +1,19 @@
 class Solution {
 public:
     uint32_t reverseBits(uint32_t n) {
-        /*
-        // shift left
+        // brute force
         // TC: O(1)
         // SC: O(1)
-        uint32_t reversed = 0;
+        uint32_t result = 0;
         for (int i = 0; i < 32; i++) {
-            reversed <<= 1;
-            reversed = (reversed | (n & 1));
-            n >>= 1;
-        }
-        return reversed;
-        */
+            result = result << 1;
 
-        // shift left
-        // TC: O(1)
-        // SC: O(1)
-        uint32_t reversed = 0;
-        for (int i = 1; i < 32; i++) {
-            reversed = (reversed | (n & 1));
-            reversed = reversed << 1;
-            n = n >> 1;
+            int tmp = 1 << i;
+            tmp = tmp & n;
+            if (tmp) {
+                result |= 1;
+            }
         }
-        reversed = (reversed | (n & 1));
-        return reversed;
+        return result;
     }
 };
