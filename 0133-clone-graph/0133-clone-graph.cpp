@@ -22,36 +22,17 @@ public:
 class Solution {
 public:
     Node* cloneGraph(Node* node) {
-        /*
-        // DFS, go through whole graph
+        // use BFS to clone node
+        // visited map means cloned or not (since node value is unique)
         // TC: O(n)
         // SC: O(n)
         if (node == nullptr) {
-            return node;
+            return nullptr;
         }
 
-        if (cloneDict.count(node->val)) {
-            return cloneDict[node->val];
-        }
-
-        Node* cloneNode = new Node(node->val);
-        cloneDict[node->val] = cloneNode;
-        for (auto const& neighbor : node->neighbors) {
-            Node* cloneNeighbor = cloneGraph(neighbor);
-            cloneNode->neighbors.push_back(cloneNeighbor);
-        }
-        return cloneNode;
-        */
-
-        // BFS
-        // TC: O(n)
-        // SC: O(n)
-        if (node == nullptr) {
-            return node;
-        }
-
-        Node* cloned = new Node(node->val);
-        cloneDict[cloned->val] = cloned;
+        // traverse node
+        Node* clone = new Node(node->val);
+        clonedMap[node->val] = clone;
         queue<Node*> q;
         q.push(node);
 
@@ -60,18 +41,23 @@ public:
             for (int i = 0; i < qSize; i++) {
                 Node* n = q.front();
                 q.pop();
-                for (auto const& neighbor : n->neighbors) {
-                    if (cloneDict.count(neighbor->val) == 0) {
+
+                for (int j = 0; j < n->neighbors.size(); j++) {
+                    Node* neighbor = n->neighbors[j];
+                    if (!clonedMap.count(neighbor->val)) {
                         Node* cloneNeighbor = new Node(neighbor->val);
-                        cloneDict[neighbor->val] = cloneNeighbor;
+                        clonedMap[neighbor->val] = cloneNeighbor;
+                        clonedMap[n->val]->neighbors.push_back(clonedMap[neighbor->val]);
                         q.push(neighbor);
+                    } else {
+                        clonedMap[n->val]->neighbors.push_back(clonedMap[neighbor->val]);
                     }
-                    cloneDict[n->val]->neighbors.push_back(cloneDict[neighbor->val]);
                 }
             }
         }
-        return cloned;
+        
+        return clonedMap[node->val];
     }
 private:
-    unordered_map<int, Node*> cloneDict;
+    unordered_map<int, Node*> clonedMap;
 };
