@@ -10,9 +10,6 @@ public:
             return nums[0];
         }
 
-        if (nums.size() == 2) {
-            return max(nums[0], nums[1]);
-        }
         int n = nums.size();
         vector<int> dp(n, 0);
         dp[0] = nums[0];
