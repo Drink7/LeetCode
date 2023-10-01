@@ -20,7 +20,7 @@ public:
         }
 
         if (row < 0 || row >= board.size() || col < 0 || col >= board[0].size() ||
-            board[row][col] == '#' || board[row][col] != word[start]) {
+            board[row][col] != word[start]) {
             return false;
         }
 
