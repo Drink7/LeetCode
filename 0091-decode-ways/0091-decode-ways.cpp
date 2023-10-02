@@ -1,9 +1,7 @@
 class Solution {
 public:
     int numDecodings(string s) {
-        // dynamic programming
-        // EX: 2314, 2 only has a decode way, 23 has [2,3] and [23] decode way
-        // 231 would check the decode way of 23 and 1, and the decode way of 2 and 31
+        // similar to climbing stair
         // TC: O(n)
         // SC: O(n)
         if (s[0] == '0') {
@@ -15,7 +13,7 @@ public:
         dp[0] = 1;
         dp[1] = 1;
         for (int i = 2; i <= n; i++) {
-            // consider 1 digit
+            // check 1 bit
             if (s[i - 1] != '0') {
                 dp[i] = dp[i] + dp[i - 1];
             }
@@ -27,17 +25,16 @@ public:
         return dp[n];
     }
 
-
     bool isValid(string s) {
         if (s[0] == '0') {
             return false;
+        }
+
+        int num = stoi(s);
+        if (num > 0 && num < 27) {
+            return true;
         } else {
-            int val = stoi(s);
-            if (val >= 1 && val <= 26) {
-                return true;
-            } else {
-                return false;
-            }
+            return false;
         }
     }
 };
