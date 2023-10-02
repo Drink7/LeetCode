@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<int> findErrorNums(vector<int>& nums) {
+        /*
         // hash set
         // TC: O(n)
         // SC: O(n)
@@ -20,5 +21,29 @@ public:
             }
         }
         return result;
+        */
+
+        // TC: O(n)
+        // SC: O(1)
+        // find dup
+        int dup = -1;
+        for (int i = 0; i < nums.size(); i++) {
+            int index = abs(nums[i]) - 1;
+            if (nums[index] < 0) {
+                dup = abs(nums[i]);
+            } else {
+                nums[index] = -nums[index];
+            }
+        }
+
+        // find missing
+        int missing = -1;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] > 0) {
+                missing = i + 1;
+                break;
+            }
+        }
+        return {dup, missing};
     }
 };
