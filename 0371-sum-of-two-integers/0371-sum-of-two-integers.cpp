@@ -1,14 +1,16 @@
 class Solution {
 public:
     int getSum(int a, int b) {
-        // cur bit = XOR
-        // carry bit = AND
-        // make b as carry
+        // XOR->sum without carry bit
+        // AND -> only carry bit
+        // End when carry bit is 0
+        // b is the carry
+        // TC: O(32)
+        // SC: O(1)
         while (b) {
-            // cur bit
-            int tmp = a ^ b;
+            int sum = a ^ b;
             b = (a & b) << 1;
-            a = tmp;
+            a = sum;
         }
         return a;
     }
