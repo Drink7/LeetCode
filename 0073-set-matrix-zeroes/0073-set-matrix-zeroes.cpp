@@ -1,30 +1,34 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        // Store the row and col
-        // Check if the row or col need to be set to zero
-        // TC: O(mn)
+        // use row / col sets to determine the ro / col need to be zero or not
+        // TC: O(m * n)
         // SC: O(m + n)
+        unordered_set<int> rowSet, colSet;
         int m = matrix.size();
         int n = matrix[0].size();
-        vector<bool> rowSet(m, false);
-        vector<bool> colSet(n, false);
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == 0) {
-                    rowSet[i] = true;
-                    colSet[j] = true;
+                    rowSet.insert(i);
+                    colSet.insert(j);
                 }
             }
         }
 
-        // set zeros
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (rowSet[i] || colSet[j]) {
-                    matrix[i][j] = 0;
-                }
+        // row set
+        for (auto const& row : rowSet) {
+            for (int i = 0; i < n; i++) {
+                matrix[row][i] = 0;
             }
         }
+        
+        // col set
+        for (auto const& col : colSet) {
+            for (int i = 0; i < m; i++) {
+                matrix[i][col] = 0;
+            }
+        }
+
     }
 };
