@@ -5,7 +5,7 @@ public:
         // insert 1st interval
         // check remaining interval, incoming interval start < last interval end, need to merge
         // else insert
-        sort(intervals.begin(), intervals.end(), [](vector<int> a, vector<int> b) {
+        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
             return a[0] < b[0];
         });
         vector<vector<int>> result;
