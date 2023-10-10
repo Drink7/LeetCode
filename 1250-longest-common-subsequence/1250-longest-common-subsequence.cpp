@@ -1,15 +1,12 @@
 class Solution {
 public:
     int longestCommonSubsequence(string text1, string text2) {
-        // Similar to 82.
-        // TC: O(m * n), m is text1 size, n is text2 size
+        // Classic dynamic programming
+        // TC: O(m * n)
         // SC: O(m * n)
         int m = text1.size();
         int n = text2.size();
-        int dp[m + 1][n + 1];
-        fill_n(*dp, (m + 1) * (n + 1), 0);
-
-        // start calculate all path
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (text1[i] == text2[j]) {
