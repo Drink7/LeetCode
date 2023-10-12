@@ -1,22 +1,22 @@
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        // sort interval start
-        // insert 1st interval
-        // check remaining interval, incoming interval start < last interval end, need to merge
-        // else insert
-        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] < b[0];
+        // sort intervals by start
+        // insert the first interval
+        // check if the incoming interval need to be merged or not
+        // TC: O(nlogn)
+        // SC: O(1)
+        sort(intervals.begin(), intervals.end(), [](vector<int>& i1, vector<int>& i2) {
+            return i1[0] < i2[0];
         });
+
         vector<vector<int>> result;
         result.push_back(intervals[0]);
         for (int i = 1; i < intervals.size(); i++) {
-            vector<int> interval = intervals[i];
-            // merge
-            if (result.back()[1] >= interval[0]) {
-                result.back()[1] = max(result.back()[1], interval[1]);
+            if (intervals[i][0] <= result.back()[1]) {
+                result.back()[1] = max(intervals[i][1], result.back()[1]);
             } else {
-                result.push_back(interval);
+                result.push_back(intervals[i]);
             }
         }
         return result;
