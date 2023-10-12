@@ -11,10 +11,7 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        // fast-slow pointer
-        // two pointer
-        // if fast->next == nullptr || fast== nullptr
-        // slow is our answer
+        // fast slow pointer
         // TC: O(logn)
         // SC: O(1)
         ListNode* fast = head;
