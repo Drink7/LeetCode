@@ -11,6 +11,7 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
+        /* Iterative
         // Just reverse
         // TC: O(n)
         // SC: O(1)
@@ -22,5 +23,20 @@ public:
             head = next;
         }
         return prev;
+        */
+        // Recursive
+        // TC: O(n)
+        // SC: O(n)
+        return reverseHelper(nullptr, head);
+    }
+
+    ListNode* reverseHelper(ListNode* prev, ListNode* head) {
+        if (head == nullptr) {
+            return prev;
+        }
+
+        ListNode* next = head->next;
+        head->next = prev;
+        return reverseHelper(head, next);
     }
 };
