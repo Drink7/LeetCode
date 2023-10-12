@@ -11,13 +11,9 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        // Iterative
+        // Just reverse
         // TC: O(n)
         // SC: O(1)
-        if (head == nullptr) {
-            return head;
-        }
-
         ListNode* prev = nullptr;
         while (head != nullptr) {
             ListNode* next = head->next;
