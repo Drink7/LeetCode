@@ -1,48 +1,28 @@
 class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        /*
-        vector<int> result;
-        vector<int> visited(numCourses);
-        used.resize(numCourses);
-        // store edges
-        for (int i = 0; i < prerequisites.size(); i++) {
-            int curCourse = prerequisites[i][0];
-            int preCourse = prerequisites[i][1];
-            courseMap[curCourse].push_back(preCourse);
-        }
-
-        for (auto const& courses : courseMap) {
-            int curCourse = courses.first;
-            if (!dfs(result, visited, curCourse)) {
-                return {};
-            }
-        }
-
-        // check remaining courses
-        for (int i = 0; i < numCourses; i++) {
-            if (!used[i]) {
-                result.push_back(i);
-            }
-        }
-        return result;
-        */
-
         // topological sort
-        // TC: O(V + E)
-        // SC: O(V + E)
-        vector<int> inDegree(numCourses, 0);
+        // TC: O(V+E)
+        // SC: O(V+E)
+        unordered_map<int, int> inDegree;
         unordered_map<int, vector<int>> graph;
+        int n = prerequisites.size();
+        // init graph
+        for (int i = 0; i < numCourses; i++) {
+            graph[i] = {};
+            inDegree[i] = 0;
+        }
 
         // build graph
-        for (int i = 0; i < prerequisites.size(); i++) {
-            int preq = prerequisites[i][1];
-            int cur = prerequisites[i][0];
-            graph[preq].push_back(cur);
-            inDegree[cur]++;
+        for (int i = 0; i < n; i++) {
+            int prev = prerequisites[i][1];
+            int next = prerequisites[i][0];
+            graph[prev].push_back(next);
+            inDegree[next]++;
         }
 
-        // Find all sources
+        // build sequence
+        vector<int> sortedCourses;
         queue<int> q;
         for (int i = 0; i < numCourses; i++) {
             if (inDegree[i] == 0) {
@@ -50,15 +30,15 @@ public:
             }
         }
 
-        vector<int> sortedCourse;
+        // traverse inDegree 0
         while (!q.empty()) {
             int qSize = q.size();
             for (int i = 0; i < qSize; i++) {
                 int course = q.front();
                 q.pop();
+                sortedCourses.push_back(course);
 
-                sortedCourse.push_back(course);
-
+                // check next course
                 for (int j = 0; j < graph[course].size(); j++) {
                     int next = graph[course][j];
                     inDegree[next]--;
@@ -68,41 +48,10 @@ public:
                 }
             }
         }
-        return (sortedCourse.size() == numCourses) ? sortedCourse : vector<int>();
+        if (sortedCourses.size() == numCourses) {
+            return sortedCourses;
+        } else {
+            return {};
+        }
     }
-
-    bool dfs(vector<int>& result, vector<int> visited, int curCourse) {
-        // course used
-        // current path used
-        if (visited[curCourse]) {
-            return false;
-        }
-
-        if (used[curCourse]) {
-            return true;
-        }
-
-        if (courseMap.count(curCourse) < 1) {
-            result.push_back(curCourse);
-            used[curCourse] = true;
-            return true;
-        }
-
-        visited[curCourse] = true;
-        vector<int> preCourses = courseMap[curCourse];
-        for (int i = 0; i < preCourses.size(); i++) {
-            if (!dfs(result, visited, preCourses[i])) {
-                return false;
-            }
-        }
-        result.push_back(curCourse);
-        used[curCourse] = true;
-
-        // prune
-        courseMap[curCourse] = {};
-        return true;
-    }
-private:
-    vector<bool> used;
-    unordered_map<int, vector<int>> courseMap;
 };
