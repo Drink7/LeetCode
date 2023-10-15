@@ -32,45 +32,19 @@ public:
 
         ListNode* node1 = headA;
         ListNode* node2 = headB;
-        while (node1 && node2) {
-            if (node1 == node2) {
-                return node1;
+        while (node1 != node2) {
+            if (node1 == nullptr) {
+                node1 = headB;
+            } else {
+                node1 = node1->next;
             }
-            node1 = node1->next;
-            node2 = node2->next;
-        }
 
-        if (node1 == nullptr) {
-            node1 = headB;
-        }
-
-        if (node2 == nullptr) {
-            node2 = headA;
-        }
-
-        while (node1 && node2) {
-            if (node1 == node2) {
-                return node1;
+            if (node2 == nullptr) {
+                node2 = headA;
+            } else {
+                node2 = node2->next;
             }
-            node1 = node1->next;
-            node2 = node2->next;
         }
-
-        if (node1 == nullptr) {
-            node1 = headB;
-        }
-
-        if (node2 == nullptr) {
-            node2 = headA;
-        }
-
-        while (node1 && node2) {
-            if (node1 == node2) {
-                return node1;
-            }
-            node1 = node1->next;
-            node2 = node2->next;
-        }
-        return nullptr;
+        return node1;
     }
 };
