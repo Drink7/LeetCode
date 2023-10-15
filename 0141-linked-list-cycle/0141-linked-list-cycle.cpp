@@ -9,17 +9,15 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        // fast slow pointer to detect cycle
-        if (head == nullptr) {
-            return false;
-        }
-
+        // classic linked list
+        // TC: O(n)
+        // SC: O(1)
         ListNode* fast = head;
         ListNode* slow = head;
         while (fast != nullptr && fast->next != nullptr) {
             fast = fast->next->next;
             slow = slow->next;
-            if (slow == fast) {
+            if (fast == slow) {
                 return true;
             }
         }
