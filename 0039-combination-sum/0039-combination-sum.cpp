@@ -1,27 +1,28 @@
 class Solution {
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        // backtracking
+        // TC: O(2^n)
+        // SC: O(2^n)
         vector<vector<int>> result;
-        vector<int> path;
-        combineHelper(result, candidates, 0, target, 0, path);
+        conbinationHelper(result, {}, 0, 0, candidates, target);
         return result;
+
     }
 
-    void combineHelper(vector<vector<int>>& result, vector<int>& candidates, int start, int target, int sum, vector<int> path) {
-        if (sum == target) {
-            result.push_back(path);
-            return;
-        }
-
+    void conbinationHelper(vector<vector<int>>& result, vector<int> combination, int start, int sum, vector<int>& candidates, int target) {
         if (sum > target) {
             return;
         }
 
+        if (sum == target) {
+            result.push_back(combination);
+            return;
+        }
+
         for (int i = start; i < candidates.size(); i++) {
-            path.push_back(candidates[i]);
-            combineHelper(result, candidates, i, target, sum + candidates[i], path);
-            path.pop_back();
+            combination.push_back(candidates[i]); 
+            conbinationHelper(result, combination, i, sum + candidates[i], candidates, target);
+            combination.pop_back();
         }
     }
 };
