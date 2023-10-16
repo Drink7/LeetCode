@@ -12,28 +12,31 @@
 class Solution {
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
-        // use preorder with current path
-        // TC: O(n)
-        // SC: O(1)
+        // leaf node left and right would be nullptr
+        // TC: O(n), n is all nodes
+        // SC: O(n)
+        // DFS
         vector<string> result;
-        pathHelper(root, result, "");
+        pathHelper(result, "", root);
         return result;
     }
 
-    void pathHelper(TreeNode* node, vector<string>& result, string path) {
-        if (node == nullptr) {
-            return;
-        }
-
-        path += to_string(node->val);
-
-        if (node->left == nullptr && node->right == nullptr) {
+    void pathHelper(vector<string>& result, string path, TreeNode* root) {
+        if (root->left == nullptr && root->right == nullptr) {
             // leaf node
+            path += to_string(root->val);
             result.push_back(path);
             return;
         }
+        path = path + to_string(root->val) + "->";
 
-        pathHelper(node->left, result, path + "->");
-        pathHelper(node->right, result, path + "->");
+        if (root->left) {
+            pathHelper(result, path, root->left);
+        }
+
+        if (root->right) {
+            pathHelper(result, path, root->right);
+        }
+
     }
 };
