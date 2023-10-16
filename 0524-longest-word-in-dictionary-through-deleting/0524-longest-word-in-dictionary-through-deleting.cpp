@@ -2,7 +2,7 @@ class Solution {
 public:
     string findLongestWord(string s, vector<string>& dictionary) {
         // sort dictionary
-        // TC: O(nlogn) dictionary has n string, average length m
+        // TC: O(m*n + nlogn) dictionary has n string, average length m
         // SC: O(1)
         sort(dictionary.begin(), dictionary.end(), [](string& s1, string& s2) {
             return s1 < s2;
