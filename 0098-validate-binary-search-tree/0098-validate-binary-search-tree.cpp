@@ -14,24 +14,21 @@ public:
     bool isValidBST(TreeNode* root) {
         // BST -> inorder
         // TC: O(n)
-        // SC: O(n)
-        return checkBST(root);
-    }
-
-    bool checkBST(TreeNode* root) {
+        // SC: O(1)
         if (root == nullptr) {
             return true;
         }
 
-        if (!checkBST(root->left)) {
+        if (isValidBST(root->left)) {
+            if (prev && prev->val >= root->val) {
+                return false;
+            }
+            prev = root;
+            return isValidBST(root->right);
+        } else {
             return false;
         }
-        if (prev && prev->val >= root->val) {
-            return false;
-        }
-        prev = root;
-        return checkBST(root->right);
     }
 private:
-    TreeNode* prev;
+    TreeNode* prev = nullptr;
 };
