@@ -11,6 +11,7 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
+        // iterative
         // TC: O(n)
         // SC: O(1)
         ListNode* prev = nullptr;
