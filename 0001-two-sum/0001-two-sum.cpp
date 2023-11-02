@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
+        // store val, index into map
         // TC: O(n)
         // SC: O(n)
         unordered_map<int, int> dict;
