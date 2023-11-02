@@ -1,17 +1,18 @@
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        // TC: (m * nlogn), m is strs length, n is average string length
-        // SC: O(m)
-        unordered_map<string, vector<string>> dict;
+        // TC: O(m * nlogn)
+        // SC: (m * n)
+        unordered_map<string, vector<string>> groupDict;
+        vector<vector<string>> result;
         for (auto const& str : strs) {
-            string pattern = str;
-            sort(pattern.begin(), pattern.end());
-            dict[pattern].push_back(str);
+            string tmp = str;
+            sort(tmp.begin(), tmp.end());
+            groupDict[tmp].push_back(str);
         }
 
-        vector<vector<string>> result;
-        for (auto const& p: dict) {
+        // add to result
+        for (auto const& p : groupDict) {
             result.push_back(p.second);
         }
         return result;
