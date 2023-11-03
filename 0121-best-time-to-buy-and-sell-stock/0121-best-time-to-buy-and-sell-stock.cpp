@@ -1,17 +1,22 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        // one variable to keep min price
-        // one variable to store max profit
+        // dp
+        // buy_price / sell_price
+        // if sell_price - buy_price < 0, buy_price = sell_price
+        // calculate profit
         // TC: O(n)
         // SC: O(1)
-        int minPrice = prices[0];
-        int maxProfit = 0;
+        int buyPrice = prices[0];
+        int sellPrice = prices[0];
+        int maxProfit = sellPrice - buyPrice;
         for (int i = 1; i < prices.size(); i++) {
-            if (prices[i] < minPrice) {
-                minPrice = prices[i];
+            sellPrice = prices[i];
+            if (sellPrice - buyPrice < 0) {
+                buyPrice = sellPrice;
+            } else {
+                maxProfit = max(maxProfit, sellPrice - buyPrice);
             }
-            maxProfit = max(maxProfit, prices[i] - minPrice);
         }
         return maxProfit;
     }
