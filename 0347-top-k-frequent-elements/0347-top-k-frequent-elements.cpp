@@ -1,18 +1,16 @@
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        // TC: O(nlogn)
-        // SC: O(n)
-        // unordered map store element, freq
-        // priority_queue minHeap to keep k most
+        // heap -> priority_queue (minHeap)
+        // map -> store element, freq
+        // freq into heap, and keep the heap with k size
         unordered_map<int, int> freqDict;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-
         for (auto const& num : nums) {
             freqDict[num]++;
         }
 
-        // push into pq
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+
         for (auto const& p : freqDict) {
             pq.push({p.second, p.first});
             if (pq.size() > k) {
@@ -20,12 +18,10 @@ public:
             }
         }
 
-        // output the result
         vector<int> result;
         for (int i = 0; i < k; i++) {
-            pair<int, int> p = pq.top();
+            result.push_back(pq.top().second);
             pq.pop();
-            result.push_back(p.second);
         }
         return result;
     }
