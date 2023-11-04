@@ -1,53 +1,40 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        /*
-        // can not sort
-        // hash set, start with one element, two pointer forward backward
-        // once found, count and remove from the set
+        // store in unordered_set
+        // count +1 and -1, and erase at the same time
+        // check the longest result
         // TC: O(n)
         // SC: O(n)
-        unordered_set<int> numSet;
-        int result = 0;
+        unordered_set<int> dict;
         for (auto const& num : nums) {
-            numSet.insert(num);
+            dict.insert(num);
         }
 
+        // find longest
+        int result = 0;
         for (auto const& num : nums) {
-            if (numSet.count(num)) {
-                int cnt = 1;
+            if (dict.count(num)) {
+                int count = 1;
                 int base = num;
-                while (numSet.count(base - 1)) {
-                    cnt++;
-                    base--;
-                    numSet.erase(base);
-                }
+                dict.erase(base);
 
-                base = num;
-                while (numSet.count(base + 1)) {
-                    cnt++;
+                // start +1 / -1 find the longest
+                // find +1
+                while (dict.count(base + 1)) {
                     base++;
-                    numSet.erase(base);
+                    count++;
+                    dict.erase(base);
                 }
 
-                result = max(result, cnt);
-            }
-        }
-        return result;
-        */
-
-        // More elegant
-        // TC: O(n)
-        // SC: O(1)
-        unordered_set<int> numSet(nums.begin(), nums.end());
-        int result = 0;
-        for (auto const& num : numSet) {
-            if (numSet.count(num - 1) < 1) {
-                int length = 0;
-                while (numSet.count(num + length)) {
-                    length++;
+                // find -1
+                base = num;
+                while (dict.count(base - 1)) {
+                    base--;
+                    count++;
+                    dict.erase(base);
                 }
-                result = max(result, length);
+                result = max(result, count);
             }
         }
         return result;
