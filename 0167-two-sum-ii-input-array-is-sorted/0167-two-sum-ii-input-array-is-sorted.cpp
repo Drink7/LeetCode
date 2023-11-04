@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
-        // use two pointer
+        // two pointer, start end
         // TC: O(n)
         // SC: O(1)
         int left = 0;
@@ -16,7 +16,6 @@ public:
                 left++;
             }
         }
-        // impossible
         return {};
     }
 };
