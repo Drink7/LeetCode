@@ -1,35 +1,45 @@
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        // dir: right, down, left, up
+        // recursive traverse
         // TC: O(m * n)
         // SC: O(1)
         vector<int> result;
-        int m = matrix.size();
-        int n = matrix[0].size();
-        int dir = 0; // 0, 1, 2, 3
-        int curRow = 0;
-        int curCol = 0;
-        int visited = 0;
-        while (visited < m * n) {
-            int element = matrix[curRow][curCol];
-            result.push_back(element);
-            matrix[curRow][curCol] = -101;
-
-            int nextRow = curRow + dRow[dir];
-            int nextCol = curCol + dCol[dir];
-            if (nextRow < 0 || nextRow >= m ||
-                nextCol < 0 || nextCol >= n ||
-                matrix[nextRow][nextCol] == -101) {
-                dir = (dir + 1) % 4;
-            }
-
-            curRow = curRow + dRow[dir];
-            curCol = curCol + dCol[dir];
-            visited++;
-        }
+        int dir = 0; // 0: right, 1: down, 2: left, 3: up
+        traverse(matrix, dir, result, 0, 0);
         return result;
     }
+
+    void traverse(vector<vector<int>>& matrix, int dir, vector<int>& result, int row, int col) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+
+        result.push_back(matrix[row][col]);
+        matrix[row][col] = -200;
+
+        if (result.size() == m * n) {
+            return;
+        }
+
+        int newRow = row + dRow[dir];
+        int newCol = col + dCol[dir];
+        while (isDirNeedChange(matrix, newRow, newCol)) {
+            dir = (dir + 1) % 4;
+            newRow = row + dRow[dir];
+            newCol = col + dCol[dir];
+        }
+
+        traverse(matrix, dir, result, newRow, newCol);
+    }
+
+    bool isDirNeedChange(vector<vector<int>>& matrix, int row, int col) {
+        if (row < 0 || row >= matrix.size() || col < 0 || col >= matrix[0].size() || matrix[row][col] == -200) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 private:
     int dRow[4] = {0, 1, 0, -1};
     int dCol[4] = {1, 0, -1, 0};
