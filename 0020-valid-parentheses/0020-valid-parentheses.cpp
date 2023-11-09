@@ -1,29 +1,26 @@
 class Solution {
 public:
     bool isValid(string s) {
-        // stack store index
-        // TC: O(n)
+        // stack
+        // TC: O(n), n is the length of string
         // SC: O(n)
-        stack<int> validStack;
-        for (int i = 0; i < s.size(); i++) {
-            if (validStack.empty()) {
-                validStack.push(i);
+        stack<char> validStack;
+        for (auto const& c : s) {
+            if (c == '(' || c == '[' || c == '{') {
+                validStack.push(c);
             } else {
-                char c = s[i];
-                if (c == ')' || c == '}' || c == ']') {
-                    char top = s[validStack.top()];
-                    if (top == '(' && c == ')' ||
-                        top == '{' && c == '}' ||
-                        top == '[' && c == ']') {
-                        validStack.pop();
-                    } else {
-                        validStack.push(i);
-                    }
+                if (c == ')' && !validStack.empty() && validStack.top() == '(') {
+                    validStack.pop();
+                } else if (c == ']' && !validStack.empty() && validStack.top() == '[') {
+                    validStack.pop();
+                } else if (c == '}' && !validStack.empty() && validStack.top() == '{') {
+                    validStack.pop();
                 } else {
-                    validStack.push(i);
+                    return false;
                 }
             }
         }
         return validStack.empty();
+
     }
 };
