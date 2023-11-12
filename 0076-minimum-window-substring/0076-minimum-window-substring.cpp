@@ -1,45 +1,49 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        // sliding window
-        // store minimum then move left if the window include all letter in t 
+        // hash table + sliding window
         // TC: O(m * n)
-        // SC: O(m + n)
-        if (s.size() < t.size()) {
+        // SC: O(n)
+        if (t.size() > s.size()) {
             return "";
         }
 
-        unordered_map<char, int> tDict;
-
-        // store t
-        for (auto const& c : t) {
-            tDict[c]++;
-        }
-
+        int m = s.size();
+        int n = t.size();
+        int counter = n;
         int left = 0;
         int right = 0;
-        int n = s.size();
-        int minStart = 0;
-        int minLength = INT_MAX;
-        int counter = t.size();
-        while (right < n) {
-            if (tDict[s[right]] > 0) {
+        int resultStart = 0;
+        int resultLength = INT_MAX;
+        unordered_map<char, int> dict;
+
+        // store t freq
+        for (auto const& c : t) {
+            dict[c]++;
+        }
+
+        while (right < m) {
+            if (dict[s[right]] > 0) {
                 counter--;
             }
-            tDict[s[right]]--;
-            while (counter == 0) {
-                if (minLength > right - left + 1) {
-                    minLength = right - left + 1;
-                    minStart = left;
+            dict[s[right]]--;
+
+            if (right - left + 1 >= n) {
+                while (counter == 0) {
+                    if (resultLength > right - left + 1) {
+                        resultLength = right - left + 1;
+                        resultStart = left;
+                    }
+
+                    dict[s[left]]++;
+                    if (dict[s[left]] > 0) {
+                        counter++;
+                    }
+                    left++;
                 }
-                tDict[s[left]]++;
-                if (tDict[s[left]] > 0) {
-                    counter++;
-                }
-                left++;
             }
             right++;
         }
-        return minLength == INT_MAX ? "" : s.substr(minStart, minLength);
+        return resultLength == INT_MAX ? "" : s.substr(resultStart, resultLength);
     }
 };
