@@ -27,7 +27,7 @@ public:
 
             dict[s2[right]]--;
 
-            if (right >= m - 1) {
+            if (right - left + 1 >= m) {
                 if (counter == 0) {
                     return true;
                 } else {
