@@ -1,14 +1,28 @@
 class Solution {
 public:
     int hammingWeight(uint32_t n) {
-        // use n & n - 1 skills
-        // TC: O(n)
+        /*
+        // Shift bit
+        // TC: O(1)
         // SC: O(1)
-        int count = 0;
+        // while loop and check the lsb
+        int cnt = 0;
+        while (n) {
+            if (n & 1) {
+                cnt++;
+            }
+            n = n >> 1;
+        }
+        return cnt;
+        */
+        // Special (n & n - 1)
+        // TC: O(1)
+        // SC: O(1)
+        int cnt = 0;
         while (n) {
             n = n & (n - 1);
-            count++;
+            cnt++;
         }
-        return count;
+        return cnt;
     }
 };
