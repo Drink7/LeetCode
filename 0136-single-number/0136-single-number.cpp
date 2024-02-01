@@ -1,15 +1,13 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        // use XOR
+        // XOR
         // TC: O(n)
         // SC: O(1)
-        // Solution 2: set (insert the set then erase the element in set)
-        // Solution 3: set + math // 2 (a + b + c) - (a + a + b + b + c) = c
-        int base = nums[0];
+        int result = nums[0];
         for (int i = 1; i < nums.size(); i++) {
-            base = base ^ nums[i];
+            result ^= nums[i];
         }
-        return base;
+        return result;
     }
 };
