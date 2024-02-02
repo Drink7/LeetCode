@@ -1,12 +1,10 @@
 class Solution {
 public:
     int getSum(int a, int b) {
-        // XOR->sum without carry bit
-        // AND -> only carry bit
-        // End when carry bit is 0
-        // b is the carry
-        // TC: O(32)
+        // TC: O(1)
         // SC: O(1)
+        // sum -> XOR, carry -> (AND << 1)
+        // a is sum, b is carry
         while (b) {
             int sum = a ^ b;
             b = (a & b) << 1;
