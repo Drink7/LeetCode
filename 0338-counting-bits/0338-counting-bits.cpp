@@ -1,19 +1,33 @@
 class Solution {
 public:
     vector<int> countBits(int n) {
-        // 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
-        // 0 1 1 2 1 2 2 3 1 2 2  3  2  3  3  4  1
-        // >> 1: right shift 1 is to divide by 2
-        // dynamic programming
+        /*
+        // log
         // TC: O(nlogn)
         // SC: O(1)
         vector<int> result;
+        result.push_back(0);
+        if (n == 0) {
+            return result;
+        }
+        result.push_back(1);
+
+        for (int i = 2; i <= n; i++) {
+            int tmp = log2(i);
+            int group = pow(2, tmp);
+
+            int index = i % group;
+            result.push_back(result[index] + 1);
+        }
+        return result;
+        */
+        vector<int> result;
         for (int i = 0; i <= n; i++) {
             int sum = 0;
-            int num = i;
-            while (num != 0) {
-                sum += num % 2;
-                num = num / 2;
+            int tmp = i;
+            while (tmp) {
+                sum++;
+                tmp = tmp & (tmp - 1);
             }
             result.push_back(sum);
         }
