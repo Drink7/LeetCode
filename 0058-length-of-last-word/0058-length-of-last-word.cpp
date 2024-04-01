@@ -8,7 +8,8 @@ public:
         stringstream ss(s);
         string token;
 
-        while (ss >> token);
+        while (ss >> token) {
+        }
 
         return token.size();
     }
