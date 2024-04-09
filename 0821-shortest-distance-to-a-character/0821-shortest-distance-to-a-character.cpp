@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<int> shortestToChar(string s, char c) {
+        /*
         // use two pointer, both start from the same position
         // left pointer goes left, right pointer goes right
         // TC: O(n^2)
@@ -22,6 +23,31 @@ public:
                     right++;
                 }
             }
+        }
+        return result;
+        */
+
+        // More elegant
+        // Goes right first, then goes left
+        // TC: O(n)
+        // SC: O(1)
+        int n = s.size();
+        vector<int> result(n, n);
+        int pos = -n;
+        // goes right
+        for (int i = 0; i < n; i++) {
+            if (s[i] == c) {
+                pos = i;
+            }
+            result[i] = i - pos;
+        }
+
+        // goes left
+        for (int i = pos - 1; i >= 0; i--) {
+            if (s[i] == c) {
+                pos = i;
+            }
+            result[i] = min(result[i], pos - i);
         }
         return result;
     }
