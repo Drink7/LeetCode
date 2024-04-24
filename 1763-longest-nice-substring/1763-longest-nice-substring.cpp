@@ -1,6 +1,7 @@
 class Solution {
 public:
     string longestNiceSubstring(string s) {
+        /*
         // brute force
         // TC: O(n^2)
         // SC: O(n)
@@ -40,5 +41,37 @@ public:
             left++;
         }
         return true;
+        
+    }
+
+    */
+        // divide and conquer
+        if (s.size() < 2) {
+            return "";
+        }
+
+        unordered_set<char> dict;
+        for (auto const& c : s) {
+            dict.insert(c);
+        }
+
+        for (int i = 0; i < s.size(); i++) {
+            if (dict.count(tolower(s[i])) && dict.count(toupper(s[i]))) {
+                continue;
+            }
+
+            string str1 = longestNiceSubstring(s.substr(0, i));
+            string str2 = longestNiceSubstring(s.substr(i + 1));
+
+            // we return the earliset nice
+            if (str1.size() >= str2.size()) {
+                return str1;
+            } else {
+                return str2;
+            }
+        }
+
+        // whole string is nice
+        return s;
     }
 };
