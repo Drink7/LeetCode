@@ -1,20 +1,22 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        // hashmap
-        // TC: O(m + n), m is ransomNote size, n is magazine size
-        // SC: O(n)
-        unordered_map<char, int> magazineDict;
+        // map store magazine
+        // check ransomnote letter one by one
+        // TC: O(n), n is ransomNote length
+        // SC: O(m), m is magazine length
+        unordered_map<char, int> wordDict;
         for (auto const& c : magazine) {
-            magazineDict[c]++;
+            wordDict[c]++;
         }
 
-        // traverse ransomNote
+        // check ransomnote
         for (auto const& c : ransomNote) {
-            if (magazineDict[c] == 0) {
+            if (wordDict[c] == 0) {
                 return false;
+            } else {
+                wordDict[c]--;
             }
-            magazineDict[c]--;
         }
         return true;
     }
