@@ -3,28 +3,25 @@ public:
     vector<int> productExceptSelf(vector<int>& nums) {
         // TC: O(n)
         // SC: O(n)
-        vector<int> rightArr;
-        vector<int> leftArr;
-        vector<int> result;
         int n = nums.size();
+        vector<int> right(n, 1);
+        vector<int> left(n, 1);
+        vector<int> result(n, 1);
 
-        rightArr.resize(n, 1);
-        leftArr.resize(n, 1);
-
-        // check left
+        // right
         for (int i = 1; i < n; i++) {
-            leftArr[i] = nums[i - 1] * leftArr[i - 1];
+            right[i] = right[i - 1] * nums[i - 1];
         }
 
-        // check right
-        for (int i = n - 1 - 1; i >= 0; i--) {
-            rightArr[i] = nums[i + 1] * rightArr[i + 1];
+        // left
+        for (int i = n - 2; i >=0; i--) {
+            left[i] = left[i + 1] * nums[i + 1];
         }
 
-        // product
+        // result
         for (int i = 0; i < n; i++) {
-            result.push_back(leftArr[i] * rightArr[i]);
+            result[i] = left[i] * right[i];
         }
-        return result;
+        return result; 
     }
 };
