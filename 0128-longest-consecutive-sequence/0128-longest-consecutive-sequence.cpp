@@ -1,40 +1,40 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        // store in unordered_set
-        // count +1 and -1, and erase at the same time
-        // check the longest result
+        // use hashmap <int, bool>
+        // find foward and backward
         // TC: O(n)
         // SC: O(n)
-        unordered_set<int> dict;
-        for (auto const& num : nums) {
-            dict.insert(num);
-        }
-
-        // find longest
+        unordered_map<int, bool> dict;
         int result = 0;
         for (auto const& num : nums) {
-            if (dict.count(num)) {
-                int count = 1;
-                int base = num;
-                dict.erase(base);
+            dict[num] = false;
+        }
 
-                // start +1 / -1 find the longest
-                // find +1
-                while (dict.count(base + 1)) {
-                    base++;
-                    count++;
-                    dict.erase(base);
+        // traverse map
+        for (auto p : dict) {
+            int tmp = 0;
+            if (p.second == false) {
+                tmp++;
+                p.second = true;
+
+                // find foward
+                int base = p.first;
+                while (dict.count(base + 1) > 0 && dict[base + 1] == false) {
+                    tmp++;
+                    dict[base++] = true;
                 }
 
-                // find -1
-                base = num;
-                while (dict.count(base - 1)) {
-                    base--;
-                    count++;
-                    dict.erase(base);
+                // find backward
+                base = p.first;
+                while (dict.count(base - 1) > 0 && dict[base - 1] == false) {
+                    tmp++;
+                    dict[base--] = true;
                 }
-                result = max(result, count);
+            }
+
+            if (tmp > result) {
+                result = tmp;
             }
         }
         return result;
