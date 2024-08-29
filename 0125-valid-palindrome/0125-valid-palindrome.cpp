@@ -6,20 +6,21 @@ public:
         // SC: O(1)
         int left = 0;
         int right = s.size() - 1;
-        while (left <= right) {
-            while (left <= right && !isalpha(s[left]) && !isdigit(s[left])) {
+        while (left < right) {
+            while (left < right && !isalnum(s[left])) {
                 left++;
             }
 
-            while (left <= right && !isalpha(s[right]) && !isdigit(s[right])) {
+            while (left < right && !isalnum(s[right])) {
                 right--;
             }
-            
-            if (left <= right && tolower(s[left]) != tolower(s[right])) {
+
+            if (tolower(s[left]) != tolower(s[right])) {
                 return false;
+            } else {
+                left++;
+                right--;
             }
-            left++;
-            right--;
         }
         return true;
     }
