@@ -4,38 +4,35 @@ public:
         // two pointer
         // TC: O(n^2)
         // SC: O(1)
-
-        // sort first
-        sort(nums.begin(), nums.end());
-
         vector<vector<int>> result;
         int n = nums.size();
+
+        sort(nums.begin(), nums.end());
         for (int i = 0; i < n; i++) {
-            if (i == 0 || nums[i - 1] != nums[i]) {
-                int target = 0 - nums[i];
-                int left = i + 1;
-                int right = n - 1;
-                while (left < right) {
-                    int sum = nums[left] + nums[right];
+            if (i == 0 || nums[i] != nums[i - 1]) {
+                int target = -nums[i];
+                int j = i + 1;
+                int k = n - 1;
+                while (j < k) {
+                    int sum = nums[j] + nums[k];
                     if (sum == target) {
-                        result.push_back({nums[i], nums[left], nums[right]});
-                        
-                        left++;
-                        right--;
-                        
-                        // skip left
-                        while (left < right && nums[left - 1] == nums[left]) {
-                            left++;
+                        result.push_back({nums[i], nums[j], nums[k]});
+
+                        // avoid duplicate
+                        j++;
+                        k--;
+
+                        while (j < k && nums[j] == nums[j - 1]) {
+                            j++;
                         }
 
-                        // skip right
-                        while (left < right && nums[right + 1] == nums[right]) {
-                            right--;
+                        while (j < k && nums[k] == nums[k + 1]) {
+                            k--;
                         }
                     } else if (sum > target) {
-                        right--;
+                        k--;
                     } else {
-                        left++;
+                        j++;
                     }
                 }
             }
