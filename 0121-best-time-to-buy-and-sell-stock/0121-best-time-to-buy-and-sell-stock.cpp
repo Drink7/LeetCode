@@ -6,15 +6,18 @@ public:
         // SC: O(1)
         int left = 0;
         int right = 0;
-        int minPrice = prices[left];
-        int profit = 0;
-        while (right < prices.size()) {
-            if (prices[right] < minPrice) {
-                minPrice = prices[right];
+        int result = 0;
+        int n = prices.size();
+        while (right < n) {
+            int profit = prices[right] - prices[left];
+            if (profit > result) {
+                result = profit;
             }
-            profit = max(prices[right] - minPrice, profit);
             right++;
+            if (right < n && prices[right] < prices[left]) {
+                left = right;
+            }
         }
-        return profit;
+        return result;
     }
 };
