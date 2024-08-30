@@ -1,21 +1,25 @@
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-        // move the shortest height every time to find the most water
-        // Two pointer
+        // two pointer
+        // every time move the smaller one
         // TC: O(n)
         // SC: O(1)
         int left = 0;
         int right = height.size() - 1;
         int result = 0;
         while (left < right) {
-            int capacity = min(height[left], height[right]) * (right - left);
-            result = max(result, capacity);
+            int h = min(height[left], height[right]);
+            int w = right - left;
+            int area = w * h;
+            if (result < area) {
+                result = area;
+            }
 
-            if (height[left] >= height[right]) {
-                right--;
-            } else {
+            if (height[right] > height[left]) {
                 left++;
+            } else {
+                right--;
             }
         }
         return result;
