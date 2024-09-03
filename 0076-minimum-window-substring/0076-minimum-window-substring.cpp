@@ -1,49 +1,62 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        // hash table + sliding window
-        // TC: O(m * n)
-        // SC: O(n)
-        if (t.size() > s.size()) {
+        // substring -> sliding window
+        // if t size > s size -> false
+        // smallest window size would be t size
+        // save t to a unordered_map<char, int>
+        // sliding window t
+        // if the letters in t are not yet obtained, move right
+        // if all letters in t are obtainbed, move left
+        // TC: O(m + n)
+        // SC: O(m + n)
+        int m = s.size();
+        int n = t.size();
+        if (n > m) {
             return "";
         }
 
-        int m = s.size();
-        int n = t.size();
-        int counter = n;
-        int left = 0;
-        int right = 0;
-        int resultStart = 0;
-        int resultLength = INT_MAX;
-        unordered_map<char, int> dict;
-
-        // store t freq
+        unordered_map<char, int> t_dict;
+        // store t to map
         for (auto const& c : t) {
-            dict[c]++;
+            t_dict[c]++;
         }
 
+        // traverse s
+        int right = 0;
+        int left = 0;
+        int cnt = n;
+        int result_left = 0;
+        int result_len = 100001;
         while (right < m) {
-            if (dict[s[right]] > 0) {
-                counter--;
-            }
-            dict[s[right]]--;
-
-            if (right - left + 1 >= n) {
-                while (counter == 0) {
-                    if (resultLength > right - left + 1) {
-                        resultLength = right - left + 1;
-                        resultStart = left;
-                    }
-
-                    dict[s[left]]++;
-                    if (dict[s[left]] > 0) {
-                        counter++;
-                    }
-                    left++;
+            char s_right = s[right];
+            //if (t_dict.count(s_right) > 0) {
+                if (t_dict[s_right] > 0) {
+                    cnt--;
                 }
+                t_dict[s_right]--;
+            //}
+
+            while (cnt == 0) {
+                if (result_len > right - left + 1) {
+                    result_len = right - left + 1;
+                    result_left = left;
+                }
+                //if (t_dict.count(s[left]) > 0) {
+                    if (t_dict[s[left]] >= 0) {
+                        cnt++;
+                    }
+                    t_dict[s[left]]++;
+                //}
+                left++;
             }
             right++;
         }
-        return resultLength == INT_MAX ? "" : s.substr(resultStart, resultLength);
+
+        if (result_len == 100001) {
+            return "";
+        } else {
+            return s.substr(result_left, result_len);
+        }
     }
 };
