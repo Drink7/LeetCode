@@ -1,26 +1,26 @@
 class Solution {
 public:
     bool isValid(string s) {
-        // stack
-        // TC: O(n), n is the length of string
+        // parentheses -> stack
+        // TC: O(n)
         // SC: O(n)
-        stack<char> validStack;
+        stack<char> s_stack;
         for (auto const& c : s) {
-            if (c == '(' || c == '[' || c == '{') {
-                validStack.push(c);
+            if (s_stack.size() == 0) {
+                s_stack.push(c);
             } else {
-                if (c == ')' && !validStack.empty() && validStack.top() == '(') {
-                    validStack.pop();
-                } else if (c == ']' && !validStack.empty() && validStack.top() == '[') {
-                    validStack.pop();
-                } else if (c == '}' && !validStack.empty() && validStack.top() == '{') {
-                    validStack.pop();
+                char top = s_stack.top();
+                if (top == '(' && c == ')') {
+                    s_stack.pop();
+                } else if (top == '{' && c == '}') {
+                    s_stack.pop();
+                } else if (top == '[' && c == ']') {
+                    s_stack.pop();
                 } else {
-                    return false;
+                    s_stack.push(c);
                 }
             }
         }
-        return validStack.empty();
-
+        return s_stack.size() == 0;
     }
 };
