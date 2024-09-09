@@ -11,38 +11,44 @@
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        // fast slow pointer
+        // find mid & reverse list
         // TC: O(n)
-        // SC: O(1)
+        // SC: O(1
+        // find mid -> slow/fast
+        // slow->next will be the left part first
         ListNode* fast = head;
         ListNode* slow = head;
-        while (fast != nullptr && fast->next != nullptr) {
+        while (fast && fast->next) {
             fast = fast->next->next;
             slow = slow->next;
         }
 
-        ListNode* leftPart = head;
-        ListNode* rightPart = reverseList(slow);
-        while (leftPart && rightPart) {
-            ListNode* next = leftPart->next;
-            leftPart->next = rightPart;
-            leftPart = next;
+        ListNode* left = slow->next;
+        slow->next = nullptr;
+        left = reverseList(left);
 
-            next = rightPart->next;
-            rightPart->next = leftPart;
-            rightPart = next;
+        // reorder
+        ListNode* dummy = new ListNode();
+        ListNode* cur = dummy;
+        while (head && left) {
+            cur->next = head;
+            cur = cur->next;
+            head = head->next;
+
+            cur->next = left;
+            cur = cur->next;
+            left = left->next;
         }
 
-
-
-        if (leftPart) {
-            leftPart->next = nullptr;
+        if (head) {
+            cur->next = head;
         }
+        head = dummy->next;
     }
 
     ListNode* reverseList(ListNode* node) {
         ListNode* prev = nullptr;
-        while (node != nullptr) {
+        while (node) {
             ListNode* next = node->next;
             node->next = prev;
             prev = node;
