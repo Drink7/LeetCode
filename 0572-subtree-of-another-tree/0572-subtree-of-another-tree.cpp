@@ -12,27 +12,36 @@
 class Solution {
 public:
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        // TC: O(m * n), m is root tree size and n is subRoot tree size
-        // SC: O(m)
-        if (root == nullptr) {
-            return false;
-        }
-
-        if (isSameTree(root, subRoot)) {
-            return true;
-        }
-
-        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+        // preorder
+        // TC: O(m * n)
+        // SC: O(m * n)
+        subTreeHelper(root, subRoot);
+        return isSubTree;
     }
 
-    bool isSameTree(TreeNode* treeA, TreeNode* treeB) {
-        if (treeA == nullptr && treeB == nullptr) {
+    void subTreeHelper(TreeNode* root, TreeNode* subRoot) {
+        if (root == nullptr) {
+            return;
+        }
+        
+        if (root && subRoot) {
+            if (root->val == subRoot->val) {
+                isSubTree = isSubTree || isSameTree(root, subRoot);
+            }
+        }
+
+        subTreeHelper(root->left, subRoot);
+        subTreeHelper(root->right, subRoot);
+    }
+
+    bool isSameTree(TreeNode* root, TreeNode* subRoot) {
+        if (root == nullptr && subRoot == nullptr) {
             return true;
         }
 
-        if (treeA && treeB) {
-            if (treeA->val == treeB->val) {
-                return isSameTree(treeA->left, treeB->left) && isSameTree(treeA->right, treeB->right);
+        if (root && subRoot) {
+            if (root->val == subRoot->val) {
+                return isSameTree(root->left, subRoot->left) && isSameTree(root->right, subRoot->right);
             } else {
                 return false;
             }
@@ -40,4 +49,6 @@ public:
             return false;
         }
     }
+private:
+    bool isSubTree = false;
 };
