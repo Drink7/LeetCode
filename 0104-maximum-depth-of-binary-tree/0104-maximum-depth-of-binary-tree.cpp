@@ -15,12 +15,12 @@ public:
         // BFS + queue
         // TC: O(n)
         // SC: O(n)
+        if (root == nullptr) {
+            return 0;
+        }
         queue<TreeNode*> treeQ;
         int depth = 0;
-
-        if (root) {
-            treeQ.push(root);
-        }
+        treeQ.push(root);
 
         while(!treeQ.empty()) {
             int qSize = treeQ.size();
