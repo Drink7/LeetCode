@@ -12,9 +12,23 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        // BST -> inorder
+        /*
+        // store in vector then compare
         // TC: O(n)
-        // SC: O(1)
+        // SC: O(n)
+        vector<int> nodes;
+        validBSTHelper(root, nodes);
+
+        for (int i = 1; i < nodes.size(); i++) {
+            if (nodes[i - 1] >= nodes[i]) {
+                return false;
+            }
+        }
+        return true;
+        */
+        // one-pass with no extra space
+        // TC: O(n)
+        // SC: O(n)
         if (root == nullptr) {
             return true;
         }
@@ -29,6 +43,18 @@ public:
             return false;
         }
     }
+
+    /*
+    void validBSTHelper(TreeNode* root, vector<int>& nodes) {
+        if (root == nullptr) {
+            return;
+        }
+        validBSTHelper(root->left, nodes);
+        nodes.push_back(root->val);
+        validBSTHelper(root->right, nodes);
+    }
+    */
 private:
     TreeNode* prev = nullptr;
+    bool isValid = true;
 };
