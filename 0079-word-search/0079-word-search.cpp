@@ -1,38 +1,39 @@
 class Solution {
 public:
     bool exist(vector<vector<char>>& board, string word) {
-        // DFS
-        // TC: O(m * n * 4 ^ L)
+        // dfs
+        // TC: O(m * n * 4^L)
         // SC: O(L)
-        for (int i = 0; i < board.size(); i++) {
-            for (int j = 0; j < board[0].size(); j++) {
-                if (board[i][j] == word[0] && dfs(board, word, i, j, 0)) {
-                    return true;
-                }
+        int m = board.size();
+        int n = board[0].size();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dfs(board, word, i, j, 0);
             }
         }
-        return false;
+        return isExist;
     }
 
-    bool dfs(vector<vector<char>>& board, string word, int row, int col, int start) {
-        if (start == word.size()) {
-            return true;
+    void dfs(vector<vector<char>>& board, string& word, int row, int col, int index) {
+        if (index == word.size()) {
+            isExist = true;
+            return;
         }
 
         if (row < 0 || row >= board.size() || col < 0 || col >= board[0].size() ||
-            board[row][col] != word[start]) {
-            return false;
+            board[row][col] == '*' || board[row][col] != word[index]) {
+            return;
         }
 
         char tmp = board[row][col];
-        board[row][col] = '#';
-        int dRow[4] = {-1, 0, 1, 0};
-        int dCol[4] = {0, -1, 0, 1};
-        bool isExist = false;
+        board[row][col] = '*';
         for (int i = 0; i < 4; i++) {
-            isExist |= dfs(board, word, row + dRow[i], col + dCol[i], start + 1);
+            dfs(board, word, row + dRow[i], col + dCol[i], index + 1);
         }
         board[row][col] = tmp;
-        return isExist;
     }
+private:
+    bool isExist = false;
+    int dRow[4] = {-1, 0, 1, 0};
+    int dCol[4] = {0, -1, 0, 1};
 };
