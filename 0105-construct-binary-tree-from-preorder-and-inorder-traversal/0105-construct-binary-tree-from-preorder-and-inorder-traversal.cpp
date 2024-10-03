@@ -12,32 +12,27 @@
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        // preorder -> subtree first element must be the subtree root
-        // inorder, we could find the subtree root position, its left is its left subtree, its right is its right subtree
         // TC: O(n)
-        // SC: O(1)
+        // SC: O(n)
         return buildHelper(preorder, inorder, 0, 0, inorder.size() - 1);
     }
 
-    TreeNode* buildHelper(vector<int>& preorder, vector<int>& inorder, int preStart, int inStart, int inEnd) {
-        if (inStart > inEnd) {
+    TreeNode* buildHelper(vector<int>& preorder, vector<int>& inorder, int preorderStart, int inorderStart, int inorderEnd) {
+        if (inorderStart > inorderEnd) {
             return nullptr;
         }
 
-        int rootVal = preorder[preStart];
-        int inorderRootId = 0;
-        for (int i = inStart; i <= inEnd; i++) {
-            if (rootVal == inorder[i]) {
-                inorderRootId = i;
+        int rootVal = preorder[preorderStart];
+        int rootPos = inorderStart;
+        for (int i = inorderStart; i <= inorderEnd; i++) {
+            if (inorder[i] == rootVal) {
+                rootPos = i;
                 break;
             }
         }
-
-        TreeNode* root = new TreeNode(rootVal);
-        int leftSubSize = inorderRootId - inStart;
-        int rightSubSize = inEnd - inorderRootId;
-        root->left =  buildHelper(preorder, inorder, preStart + 1, inStart, inStart + leftSubSize - 1);
-        root->right = buildHelper(preorder, inorder, preStart + leftSubSize + 1, inorderRootId + 1, inEnd);
-        return root;
+        TreeNode* node = new TreeNode(rootVal);
+        node->left = buildHelper(preorder, inorder, preorderStart + 1, inorderStart, rootPos - 1);
+        node->right = buildHelper(preorder, inorder, preorderStart + (rootPos - inorderStart) + 1, rootPos + 1, inorderEnd);
+        return node;
     }
 };
