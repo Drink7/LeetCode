@@ -11,48 +11,56 @@
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        // TC: O(nlogn)
+        // two two merge
+        // TC: O(m * n), m lists, lists average is n
         // SC: O(1)
-        return mergeSort(lists, 0, lists.size() - 1);
-    }
-
-    ListNode* mergeSort(vector<ListNode*>& lists, int left, int right) {
-        if (left > right) {
+        if (lists.size() == 0) {
             return nullptr;
-        } else if (left == right) {
-            return lists[left];
-        } else {
-            int mid = left + (right - left) / 2;
-            ListNode* leftNode = mergeSort(lists, left, mid);
-            ListNode* rightNode = mergeSort(lists, mid + 1, right);
-            return merge(leftNode, rightNode);
         }
+
+        ListNode* result = lists[0];
+        vector<ListNode*> copyList(lists.begin(), lists.end());
+        while (copyList.size() > 1) {
+            vector<ListNode*> subList;
+
+            for (int i = 0; i < copyList.size(); i = i + 2) {
+                if (i + 1 >= copyList.size()) {
+                    subList.push_back(mergeList(copyList[i], nullptr));
+                } else {
+                    subList.push_back(mergeList(copyList[i], copyList[i + 1]));
+                }
+            }
+
+            // reset copyList
+            copyList.clear();
+            copyList.assign(subList.begin(), subList.end());
+            result = copyList[0];
+
+        }
+        return result;
     }
 
-    ListNode* merge(ListNode* left, ListNode* right) {
+    ListNode* mergeList(ListNode* node1, ListNode* node2) {
         ListNode* dummy = new ListNode();
         ListNode* cur = dummy;
-        while (left && right) {
-            if (left->val > right->val) {
-                cur->next = right;
-                right = right->next;
+        while (node1 && node2) {
+            if (node1->val < node2->val) {
+                cur->next = node1;
+                node1 = node1->next;
             } else {
-                cur->next = left;
-                left = left->next;
+                cur->next = node2;
+                node2 = node2->next;
             }
             cur = cur->next;
         }
 
-        if (left) {
-            cur->next = left;
+        if (node1) {
+            cur->next = node1;
         }
 
-        if (right) {
-            cur->next = right;
+        if (node2) {
+            cur->next = node2;
         }
-
-        cur = dummy->next;
-        delete(dummy);
-        return cur;
+        return dummy->next;
     }
 };
