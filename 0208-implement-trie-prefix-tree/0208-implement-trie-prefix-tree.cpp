@@ -1,61 +1,72 @@
+class TrieNode{
+public:
+    char val;
+    TrieNode* letterDict[26];
+    bool isWord = false;
+    TrieNode() {
+        for (int i = 0; i < 26; i++) {
+            letterDict[i] = nullptr;
+        }
+    }
+
+    TrieNode(char in) : TrieNode() {
+        val = in;
+    }
+};
+
 class Trie {
-
-    class TrieNode {
-        public:
-            bool isWord = false;
-            char c;
-            unordered_map<char, TrieNode*> dict;
-            TrieNode() {
-            }
-
-            TrieNode(char val) {
-                c = val;
-            }
-    };
-
+private:
+    TrieNode* root;
 public:
     Trie() {
-        root = new TrieNode();
+        root = new TrieNode('\0');
     }
     
     void insert(string word) {
+        // TC: O(len)
         TrieNode* cur = root;
-        for (auto const& c : word) {
-            if (cur->dict.count(c) < 1) {
-                cur->dict[c] = new TrieNode(c);
+        for (int i = 0; i < word.size(); i++) {
+            char c = word[i];
+            int charIndex = c - 'a';
+            cout << "1: " << charIndex << endl;
+            if (cur->letterDict[charIndex] == nullptr) {
+                // add new char
+                cout << "2: " << charIndex << endl;
+                cur->letterDict[charIndex] = new TrieNode(c);
             }
-            cur = cur->dict[c];
+            cout << "3: " << charIndex << endl;
+            cur = cur->letterDict[charIndex];
         }
         cur->isWord = true;
     }
     
     bool search(string word) {
+        // TC: O(len)
         TrieNode* cur = root;
-        for (auto const& c : word) {
-            if (cur->dict.count(c) < 1) {
+        for (int i = 0; i < word.size(); i++) {
+            char c = word[i];
+            int charIndex = c - 'a';
+            if (cur->letterDict[charIndex] == nullptr) {
                 return false;
             }
-            cur = cur->dict[c];
+            cur = cur->letterDict[charIndex];
         }
-        if (cur->isWord) {
-            return true;
-        } else {
-            return false;
-        }
+        return cur->isWord;
     }
     
     bool startsWith(string prefix) {
+        // TC: O(len)
         TrieNode* cur = root;
-        for (auto const& c : prefix) {
-            if (cur->dict.count(c) < 1) {
+        for (int i = 0; i < prefix.size(); i++) {
+            char c = prefix[i];
+            int charIndex = c - 'a';
+            if (cur->letterDict[charIndex] == nullptr) {
                 return false;
             }
-            cur = cur->dict[c];
+            cur = cur->letterDict[charIndex];
         }
         return true;
     }
-private:
-    TrieNode* root;
 };
 
 /**
