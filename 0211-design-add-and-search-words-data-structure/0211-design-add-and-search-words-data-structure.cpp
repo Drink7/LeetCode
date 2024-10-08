@@ -1,19 +1,17 @@
-class WordDictionary {
-    // Trie
-    // TC: O(n)
-    // SC: O(n)
-    class WordNode {
-        public:
-            char c;
-            bool isWord = false;
-            unordered_map<char, WordNode*> dict;
-            WordNode() {
-            }
+class WordNode {
+public:
+    unordered_map<char, WordNode*> dict;
+    bool isWord = false;
+    char val = ' ';
+    WordNode() {
+    }
 
-            WordNode(char in) {
-                c = in;
-            }
-    };
+    WordNode(char c) {
+        val = c;
+    }
+};
+
+class WordDictionary {
 public:
     WordDictionary() {
         root = new WordNode();
@@ -31,35 +29,28 @@ public:
     }
     
     bool search(string word) {
-        WordNode* cur = root;
-        return searchHelper(cur, word, 0);
+        return searchHelper(root, 0, word);
     }
 
-    bool searchHelper(WordNode* node, string word, int start) {
-        // backtracking
-        for (int i = start; i < word.size(); i++) {
-            char c = word[i];
-            if (c == '.') {
-                for (auto const& p : node->dict) {
-                    if (searchHelper(p.second, word, i + 1)) {
+    bool searchHelper(WordNode* root, int id, string& word) {
+        WordNode* cur = root;
+        for (int i = id; i < word.size(); i++) {
+            if (word[i] == '.') {
+                for (auto const& p : cur->dict) {
+                    if(searchHelper(p.second, i + 1, word)) {
                         return true;
                     }
                 }
                 return false;
             } else {
-                if (node->dict.count(c) < 1) {
+                if (cur->dict.count(word[i]) < 1) {
                     return false;
                 }
-                node = node->dict[c];
+                cur = cur->dict[word[i]];
             }
         }
-        if (node->isWord) {
-            return true;
-        } else {
-            return false;
-        }
+        return cur->isWord;
     }
-
 private:
     WordNode* root;
 };
