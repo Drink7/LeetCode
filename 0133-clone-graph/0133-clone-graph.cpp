@@ -22,42 +22,30 @@ public:
 class Solution {
 public:
     Node* cloneGraph(Node* node) {
-        // use BFS to clone node
-        // visited map means cloned or not (since node value is unique)
-        // TC: O(n)
-        // SC: O(n)
+        // no repeated edges and self loop
+        // no repeated value node
+        // all nodes can be visited starting from given node
+        // TC: O(m * n), m nodes with n edges
+        // SC: O(m * n)
         if (node == nullptr) {
             return nullptr;
         }
-
-        // traverse node
-        Node* clone = new Node(node->val);
-        clonedMap[node->val] = clone;
-        queue<Node*> q;
-        q.push(node);
-
-        while (!q.empty()) {
-            int qSize = q.size();
-            for (int i = 0; i < qSize; i++) {
-                Node* n = q.front();
-                q.pop();
-
-                for (int j = 0; j < n->neighbors.size(); j++) {
-                    Node* neighbor = n->neighbors[j];
-                    if (!clonedMap.count(neighbor->val)) {
-                        Node* cloneNeighbor = new Node(neighbor->val);
-                        clonedMap[neighbor->val] = cloneNeighbor;
-                        clonedMap[n->val]->neighbors.push_back(clonedMap[neighbor->val]);
-                        q.push(neighbor);
-                    } else {
-                        clonedMap[n->val]->neighbors.push_back(clonedMap[neighbor->val]);
-                    }
-                }
-            }
-        }
         
-        return clonedMap[node->val];
+        int val = node->val;
+        if (adjList.count(val) < 1) {
+            Node* newNode = new Node(node->val);
+            adjList[val] = newNode;
+            
+            int listSize = node->neighbors.size();
+            for (int i = 0; i < listSize; i++) {
+                Node* newNeighbor = cloneGraph(node->neighbors[i]);
+                newNode->neighbors.push_back(newNeighbor);
+            }
+            return newNode;
+        } else {
+            return adjList[val];
+        }
     }
 private:
-    unordered_map<int, Node*> clonedMap;
+    unordered_map<int, Node*> adjList;
 };
