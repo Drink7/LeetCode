@@ -3,48 +3,43 @@ public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         // topological sort
         // TC: O(V+E)
-        // SC: O(V+E)
-        unordered_map<int, int> inDegree;
-        unordered_map<int, vector<int>> graph;
-        int n = prerequisites.size();
-        // init graph
+        // SC: O(E)
+        vector<int> inDegree(numCourses, 0);
+        unordered_map<int, vector<int>> adjacencyMap;
         for (int i = 0; i < numCourses; i++) {
-            graph[i] = {};
-            inDegree[i] = 0;
+            adjacencyMap[i] = {};
         }
 
-        // build graph
-        for (int i = 0; i < n; i++) {
-            int prev = prerequisites[i][1];
-            int next = prerequisites[i][0];
-            graph[prev].push_back(next);
-            inDegree[next]++;
+        // Build the graph
+        for (int i = 0; i < prerequisites.size(); i++) {
+            int preq = prerequisites[i][1];
+            int course = prerequisites[i][0];
+            adjacencyMap[preq].push_back(course);
+            inDegree[course]++;
         }
 
-        // build sequence
+        // Start to sort
+        queue<int> sortQ;
         vector<int> sortedCourses;
-        queue<int> q;
         for (int i = 0; i < numCourses; i++) {
             if (inDegree[i] == 0) {
-                q.push(i);
+                sortQ.push(i);
             }
         }
 
-        // traverse inDegree 0
-        while (!q.empty()) {
-            int qSize = q.size();
-            for (int i = 0; i < qSize; i++) {
-                int course = q.front();
-                q.pop();
-                sortedCourses.push_back(course);
+        while (!sortQ.empty()) {
+            int course = sortQ.front();
+            sortQ.pop();
 
-                // check next course
-                for (int j = 0; j < graph[course].size(); j++) {
-                    int next = graph[course][j];
-                    inDegree[next]--;
-                    if (inDegree[next] == 0) {
-                        q.push(next);
-                    }
+            if (inDegree[course] == 0) {
+                sortedCourses.push_back(inDegree[course]);
+            }
+
+            for (int i = 0; i < adjacencyMap[course].size(); i++) {
+                int nextCourse = adjacencyMap[course][i];
+                inDegree[nextCourse]--;
+                if (inDegree[nextCourse] == 0) {
+                    sortQ.push(nextCourse);
                 }
             }
         }
