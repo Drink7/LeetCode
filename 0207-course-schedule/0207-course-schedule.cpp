@@ -32,7 +32,7 @@ public:
             sortQ.pop();
 
             if (inDegree[course] == 0) {
-                sortedCourses.push_back(inDegree[course]);
+                sortedCourses.push_back(course);
             }
 
             for (int i = 0; i < adjacencyMap[course].size(); i++) {
