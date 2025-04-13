@@ -12,15 +12,16 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         // TC: O(m + n)
-        // SC: O(n)
+        // SC: O(1)
         // make final l1 is the sum of l1 + l2
-        vector<ListNode*> nodeList;
+        ListNode* prev = nullptr;
+        ListNode* head = l1;
         int carry = 0;
         while (l1 && l2) {
             int val = carry + l1->val + l2->val;
-            ListNode* node = new ListNode(val % 10);
-            nodeList.push_back(node);
+            l1->val = val % 10;
             carry = val / 10;
+            prev = l1;
             l1 = l1->next;
             l2 = l2->next;
         }
@@ -28,36 +29,26 @@ public:
         // check l1 or l2
         while (l1) {
             int val = carry + l1->val;
-            ListNode* node = new ListNode(val % 10);
-            nodeList.push_back(node);
             l1->val = val % 10;
             carry = val / 10;
+            prev = l1;
             l1 = l1->next;
         }
 
         while (l2) {
             int val = carry + l2->val;
-            ListNode* node = new ListNode(val % 10);
-            nodeList.push_back(node);
             l2->val = val % 10;
             carry = val / 10;
+            prev->next = l2;
+            prev = prev->next;
             l2 = l2->next;
         }
         
         // both l1 & l2 is nullptr, check carry
         if (carry != 0) {
-            ListNode* node = new ListNode(carry);
-            nodeList.push_back(node);
+            ListNode* last = new ListNode(carry);
+            prev->next = last;
         }
-
-        // link nodes
-        for (int i = 0; i < nodeList.size(); i++) {
-            if (i == nodeList.size() - 1) {
-                nodeList[i]->next = nullptr;
-            } else {
-                nodeList[i]->next = nodeList[i + 1];
-            }
-        }
-        return nodeList[0];
+        return head;
     }
 };
