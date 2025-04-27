@@ -12,27 +12,29 @@
 class Solution {
 public:
     bool isBalanced(TreeNode* root) {
-        // we traverse the tree with root->left and root->right
-        // Get the depth count of left and right, make sure they are with the diff less than 1
+        // No global variable
+        // left & right height
         // TC: O(n)
         // SC: O(n)
-        balanceHelper(root);
-        return isBalance;
+        return balaceHelper(root) != -1;
     }
 
-    int balanceHelper(TreeNode* node) {
-        if (node == nullptr) {
+    int balaceHelper(TreeNode* root) {
+        if (root == nullptr) {
             return 0;
         }
-
-        int left = balanceHelper(node->left);
-        int right = balanceHelper(node->right);
-        int diff = abs(left - right);
-        if (diff > 1) {
-            isBalance = false;
+        int left = balaceHelper(root->left);
+        if (left == -1) {
+            return -1;
         }
-        return 1 + max(left, right);
+        int right = balaceHelper(root->right);
+        if (right == -1) {
+            return -1;
+        }
+        if (abs(left - right) > 1) {
+            return -1;
+        }
+        return max(left, right) + 1;
+
     }
-private:
-    bool isBalance = true;
 };
