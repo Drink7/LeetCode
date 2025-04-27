@@ -16,7 +16,8 @@ public:
         // left & right height
         // TC: O(n)
         // SC: O(n)
-        return balaceHelper(root) != -1;
+        balaceHelper(root);
+        return isBalance;
     }
 
     int balaceHelper(TreeNode* root) {
@@ -24,17 +25,13 @@ public:
             return 0;
         }
         int left = balaceHelper(root->left);
-        if (left == -1) {
-            return -1;
-        }
         int right = balaceHelper(root->right);
-        if (right == -1) {
-            return -1;
-        }
         if (abs(left - right) > 1) {
-            return -1;
+            isBalance = false;
         }
         return max(left, right) + 1;
 
     }
+private:
+    bool isBalance = true;
 };
