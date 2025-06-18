@@ -12,26 +12,25 @@
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
-        // TC: O(k)
-        // SC: O(k)
-        kthHelper(root, k);
-        return result->val;
+        cnt = k;
+        kHelper(root);
+        return result;
     }
 
-    void kthHelper(TreeNode* root, int k) {
+    void kHelper(TreeNode* root) {
         if (root == nullptr) {
             return;
         }
-
-        kthHelper(root->left, k);
-        cnt++;
-        if (cnt == k) {
-            result = root;
+    
+        kHelper(root->left);
+        cnt--;
+        if(cnt == 0) {
+            result = root->val;
             return;
         }
-        kthHelper(root->right, k);
+        kHelper(root->right);
     }
 private:
-    TreeNode* result;
     int cnt = 0;
+    int result = -1;
 };
