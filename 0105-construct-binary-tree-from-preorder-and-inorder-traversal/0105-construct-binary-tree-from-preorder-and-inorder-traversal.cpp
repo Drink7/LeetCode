@@ -12,27 +12,37 @@
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        // Rebuild tree
+        // preorder:
+        // first must be root
+        // root next must be left subtree root
+        // Use the root to find the left subtree size in inorder
+        // inorder left size is left subtree size
+        // inorder right size is right subtree size
+        // preorder right subtree root = root + left size + 1 to the end
         // TC: O(n)
-        // SC: O(n)
-        return buildHelper(preorder, inorder, 0, 0, inorder.size() - 1);
+        return buildTreeHelper(preorder, inorder, 0, 0, inorder.size() - 1);
     }
 
-    TreeNode* buildHelper(vector<int>& preorder, vector<int>& inorder, int preorderStart, int inorderStart, int inorderEnd) {
-        if (inorderStart > inorderEnd) {
+    TreeNode* buildTreeHelper(vector<int>& preorder, vector<int>& inorder, int preStart, int inStart, int inEnd) {
+        if (inStart > inEnd) {
             return nullptr;
         }
 
-        int rootVal = preorder[preorderStart];
-        int rootPos = inorderStart;
-        for (int i = inorderStart; i <= inorderEnd; i++) {
-            if (inorder[i] == rootVal) {
-                rootPos = i;
+        TreeNode* root = new TreeNode(preorder[preStart]);
+        int pivot = inStart;
+        for (int i = inStart; i <= inEnd; i++) {
+            if (preorder[preStart] == inorder[i])
+            {
+                pivot = i;
                 break;
             }
         }
-        TreeNode* node = new TreeNode(rootVal);
-        node->left = buildHelper(preorder, inorder, preorderStart + 1, inorderStart, rootPos - 1);
-        node->right = buildHelper(preorder, inorder, preorderStart + (rootPos - inorderStart) + 1, rootPos + 1, inorderEnd);
-        return node;
+
+        int leftSubTreeSize = pivot - inStart;
+        int rightSubTreeSize = inEnd - pivot;
+        root->left = buildTreeHelper(preorder, inorder, preStart + 1, inStart, pivot - 1);
+        root->right = buildTreeHelper(preorder, inorder, preStart + leftSubTreeSize + 1, pivot + 1, inEnd);
+        return root;
     }
 };
