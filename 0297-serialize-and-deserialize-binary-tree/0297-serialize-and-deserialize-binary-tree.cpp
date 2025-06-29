@@ -12,40 +12,39 @@ public:
 
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
-        // preorder
         // TC: O(n)
-        // SC: O(logh)
+        // SC: O(1)
         if (root == nullptr) {
             return "N";
-        } else {
-            return to_string(root->val) + "." + serialize(root->left) + "." + serialize(root->right);
         }
+        return to_string(root->val) + " " + serialize(root->left) + " " + serialize(root->right); 
     }
 
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
+        vector<string> nodeList;
         stringstream ss(data);
-        string token = "";
-        vector<string> dataList;
-        int start = 0;
-        while (getline(ss, token, '.')) {
-            dataList.push_back(token);
+        string tmp;
+        while (ss >> tmp) {
+            nodeList.push_back(tmp);
         }
-        return deserializeHelper(dataList, start);
+        return deserializeHelper(nodeList);
     }
 
-    TreeNode* deserializeHelper(vector<string>& datas, int& start) {
-        if (datas[start] == "N") {
+    TreeNode* deserializeHelper(vector<string>& nodeList) {
+        if (nodeList[index] == "N") {
+            index++;
             return nullptr;
         }
-
-        TreeNode* root = new TreeNode(stoi(datas[start]));
-        start++;
-        root->left = deserializeHelper(datas, start);
-        start++;
-        root->right = deserializeHelper(datas, start);
-        return root;
+        int val = stoi(nodeList[index]);
+        index++;
+        TreeNode* node = new TreeNode(val);
+        node->left = deserializeHelper(nodeList);
+        node->right = deserializeHelper(nodeList);
+        return node;
     }
+private:
+    int index = 0;
 };
 
 // Your Codec object will be instantiated and called as such:
