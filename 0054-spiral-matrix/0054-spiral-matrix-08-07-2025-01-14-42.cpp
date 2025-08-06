@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        // TC: O(m * n)
+        // SC: O(1)
+        int top = 0;
+        int bottom = matrix.size() - 1;
+        int left = 0;
+        int right = matrix[0].size() - 1;
+        vector<int> result;
+        while (top <= bottom && left <= right) {
+            // traverse top (Go right)
+            for (int i = left; i <= right; i++) {
+                result.push_back(matrix[top][i]);
+            }
+            top++;
+
+            // traverse right (Go down)
+            for (int i = top; i <= bottom; i++) {
+                result.push_back(matrix[i][right]);
+            }
+            right--;
+
+            // core check
+            if (top > bottom || left > right) {
+                break;
+            }
+            
+            // traverse down (Go left)
+            for (int i = right; i >= left; i--) {
+                result.push_back(matrix[bottom][i]);
+            }
+            bottom--;
+
+            // traverse left (Go up)
+            for (int i = bottom; i >= top; i--) {
+                result.push_back(matrix[i][left]);
+            }
+            left++;
+        }
+        return result;
+    }
+};
