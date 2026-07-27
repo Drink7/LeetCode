@@ -12,11 +12,13 @@ Collection of LeetCode questions to ace the coding interview!
 | [0015-3sum](https://github.com/Drink7/LeetCode/tree/main/0015-3sum/) | Medium |
 | [0018-4sum](https://github.com/Drink7/LeetCode/tree/main/0018-4sum/) | Medium |
 | [0169-majority-element](https://github.com/Drink7/LeetCode/tree/main/0169-majority-element/) | Easy |
+| [0217-contains-duplicate](https://github.com/Drink7/LeetCode/tree/main/0217-contains-duplicate/) | Easy |
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0001-two-sum](https://github.com/Drink7/LeetCode/tree/main/0001-two-sum/) | Easy |
 | [0169-majority-element](https://github.com/Drink7/LeetCode/tree/main/0169-majority-element/) | Easy |
+| [0217-contains-duplicate](https://github.com/Drink7/LeetCode/tree/main/0217-contains-duplicate/) | Easy |
 ## Two Pointers
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -28,6 +30,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0015-3sum](https://github.com/Drink7/LeetCode/tree/main/0015-3sum/) | Medium |
 | [0018-4sum](https://github.com/Drink7/LeetCode/tree/main/0018-4sum/) | Medium |
 | [0169-majority-element](https://github.com/Drink7/LeetCode/tree/main/0169-majority-element/) | Easy |
+| [0217-contains-duplicate](https://github.com/Drink7/LeetCode/tree/main/0217-contains-duplicate/) | Easy |
 ## Divide and Conquer
 | Problem Name | Difficulty |
 | ------- | ------- |
