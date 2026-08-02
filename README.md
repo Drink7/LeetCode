@@ -19,6 +19,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0238-product-of-array-except-self](https://github.com/Drink7/LeetCode/tree/main/0238-product-of-array-except-self/) | Medium |
 | [0283-move-zeroes](https://github.com/Drink7/LeetCode/tree/main/0283-move-zeroes/) | Easy |
 | [0347-top-k-frequent-elements](https://github.com/Drink7/LeetCode/tree/main/0347-top-k-frequent-elements/) | Medium |
+| [0905-sort-array-by-parity](https://github.com/Drink7/LeetCode/tree/main/0905-sort-array-by-parity/) | Easy |
 | [0977-squares-of-a-sorted-array](https://github.com/Drink7/LeetCode/tree/main/0977-squares-of-a-sorted-array/) | Easy |
 ## Hash Table
 | Problem Name | Difficulty |
@@ -36,6 +37,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0018-4sum](https://github.com/Drink7/LeetCode/tree/main/0018-4sum/) | Medium |
 | [0075-sort-colors](https://github.com/Drink7/LeetCode/tree/main/0075-sort-colors/) | Medium |
 | [0283-move-zeroes](https://github.com/Drink7/LeetCode/tree/main/0283-move-zeroes/) | Easy |
+| [0905-sort-array-by-parity](https://github.com/Drink7/LeetCode/tree/main/0905-sort-array-by-parity/) | Easy |
 | [0977-squares-of-a-sorted-array](https://github.com/Drink7/LeetCode/tree/main/0977-squares-of-a-sorted-array/) | Easy |
 ## Sorting
 | Problem Name | Difficulty |
@@ -48,6 +50,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0217-contains-duplicate](https://github.com/Drink7/LeetCode/tree/main/0217-contains-duplicate/) | Easy |
 | [0242-valid-anagram](https://github.com/Drink7/LeetCode/tree/main/0242-valid-anagram/) | Easy |
 | [0347-top-k-frequent-elements](https://github.com/Drink7/LeetCode/tree/main/0347-top-k-frequent-elements/) | Medium |
+| [0905-sort-array-by-parity](https://github.com/Drink7/LeetCode/tree/main/0905-sort-array-by-parity/) | Easy |
 | [0977-squares-of-a-sorted-array](https://github.com/Drink7/LeetCode/tree/main/0977-squares-of-a-sorted-array/) | Easy |
 ## Divide and Conquer
 | Problem Name | Difficulty |
