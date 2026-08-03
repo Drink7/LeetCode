@@ -12,6 +12,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0015-3sum](https://github.com/Drink7/LeetCode/tree/main/0015-3sum/) | Medium |
 | [0016-3sum-closest](https://github.com/Drink7/LeetCode/tree/main/0016-3sum-closest/) | Medium |
 | [0018-4sum](https://github.com/Drink7/LeetCode/tree/main/0018-4sum/) | Medium |
+| [0036-valid-sudoku](https://github.com/Drink7/LeetCode/tree/main/0036-valid-sudoku/) | Medium |
 | [0049-group-anagrams](https://github.com/Drink7/LeetCode/tree/main/0049-group-anagrams/) | Medium |
 | [0075-sort-colors](https://github.com/Drink7/LeetCode/tree/main/0075-sort-colors/) | Medium |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Drink7/LeetCode/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
@@ -29,6 +30,7 @@ Collection of LeetCode questions to ace the coding interview!
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0001-two-sum](https://github.com/Drink7/LeetCode/tree/main/0001-two-sum/) | Easy |
+| [0036-valid-sudoku](https://github.com/Drink7/LeetCode/tree/main/0036-valid-sudoku/) | Medium |
 | [0049-group-anagrams](https://github.com/Drink7/LeetCode/tree/main/0049-group-anagrams/) | Medium |
 | [0128-longest-consecutive-sequence](https://github.com/Drink7/LeetCode/tree/main/0128-longest-consecutive-sequence/) | Medium |
 | [0169-majority-element](https://github.com/Drink7/LeetCode/tree/main/0169-majority-element/) | Easy |
@@ -105,4 +107,8 @@ Collection of LeetCode questions to ace the coding interview!
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0128-longest-consecutive-sequence](https://github.com/Drink7/LeetCode/tree/main/0128-longest-consecutive-sequence/) | Medium |
+## Matrix
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0036-valid-sudoku](https://github.com/Drink7/LeetCode/tree/main/0036-valid-sudoku/) | Medium |
 <!---LeetCode Topics End-->
