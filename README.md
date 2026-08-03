@@ -15,6 +15,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0049-group-anagrams](https://github.com/Drink7/LeetCode/tree/main/0049-group-anagrams/) | Medium |
 | [0075-sort-colors](https://github.com/Drink7/LeetCode/tree/main/0075-sort-colors/) | Medium |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Drink7/LeetCode/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
+| [0128-longest-consecutive-sequence](https://github.com/Drink7/LeetCode/tree/main/0128-longest-consecutive-sequence/) | Medium |
 | [0169-majority-element](https://github.com/Drink7/LeetCode/tree/main/0169-majority-element/) | Easy |
 | [0217-contains-duplicate](https://github.com/Drink7/LeetCode/tree/main/0217-contains-duplicate/) | Easy |
 | [0238-product-of-array-except-self](https://github.com/Drink7/LeetCode/tree/main/0238-product-of-array-except-self/) | Medium |
@@ -29,6 +30,7 @@ Collection of LeetCode questions to ace the coding interview!
 | ------- | ------- |
 | [0001-two-sum](https://github.com/Drink7/LeetCode/tree/main/0001-two-sum/) | Easy |
 | [0049-group-anagrams](https://github.com/Drink7/LeetCode/tree/main/0049-group-anagrams/) | Medium |
+| [0128-longest-consecutive-sequence](https://github.com/Drink7/LeetCode/tree/main/0128-longest-consecutive-sequence/) | Medium |
 | [0169-majority-element](https://github.com/Drink7/LeetCode/tree/main/0169-majority-element/) | Easy |
 | [0217-contains-duplicate](https://github.com/Drink7/LeetCode/tree/main/0217-contains-duplicate/) | Easy |
 | [0242-valid-anagram](https://github.com/Drink7/LeetCode/tree/main/0242-valid-anagram/) | Easy |
@@ -99,4 +101,8 @@ Collection of LeetCode questions to ace the coding interview!
 | ------- | ------- |
 | [2149-rearrange-array-elements-by-sign](https://github.com/Drink7/LeetCode/tree/main/2149-rearrange-array-elements-by-sign/) | Medium |
 | [2161-partition-array-according-to-given-pivot](https://github.com/Drink7/LeetCode/tree/main/2161-partition-array-according-to-given-pivot/) | Medium |
+## Union-Find
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0128-longest-consecutive-sequence](https://github.com/Drink7/LeetCode/tree/main/0128-longest-consecutive-sequence/) | Medium |
 <!---LeetCode Topics End-->
