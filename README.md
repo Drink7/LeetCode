@@ -44,6 +44,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0016-3sum-closest](https://github.com/Drink7/LeetCode/tree/main/0016-3sum-closest/) | Medium |
 | [0018-4sum](https://github.com/Drink7/LeetCode/tree/main/0018-4sum/) | Medium |
 | [0075-sort-colors](https://github.com/Drink7/LeetCode/tree/main/0075-sort-colors/) | Medium |
+| [0125-valid-palindrome](https://github.com/Drink7/LeetCode/tree/main/0125-valid-palindrome/) | Easy |
 | [0283-move-zeroes](https://github.com/Drink7/LeetCode/tree/main/0283-move-zeroes/) | Easy |
 | [0905-sort-array-by-parity](https://github.com/Drink7/LeetCode/tree/main/0905-sort-array-by-parity/) | Easy |
 | [0977-squares-of-a-sorted-array](https://github.com/Drink7/LeetCode/tree/main/0977-squares-of-a-sorted-array/) | Easy |
@@ -81,6 +82,7 @@ Collection of LeetCode questions to ace the coding interview!
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0049-group-anagrams](https://github.com/Drink7/LeetCode/tree/main/0049-group-anagrams/) | Medium |
+| [0125-valid-palindrome](https://github.com/Drink7/LeetCode/tree/main/0125-valid-palindrome/) | Easy |
 | [0242-valid-anagram](https://github.com/Drink7/LeetCode/tree/main/0242-valid-anagram/) | Easy |
 ## Heap (Priority Queue)
 | Problem Name | Difficulty |
