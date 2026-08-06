@@ -14,6 +14,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0016-3sum-closest](https://github.com/Drink7/LeetCode/tree/main/0016-3sum-closest/) | Medium |
 | [0018-4sum](https://github.com/Drink7/LeetCode/tree/main/0018-4sum/) | Medium |
 | [0036-valid-sudoku](https://github.com/Drink7/LeetCode/tree/main/0036-valid-sudoku/) | Medium |
+| [0042-trapping-rain-water](https://github.com/Drink7/LeetCode/tree/main/0042-trapping-rain-water/) | Hard |
 | [0049-group-anagrams](https://github.com/Drink7/LeetCode/tree/main/0049-group-anagrams/) | Medium |
 | [0075-sort-colors](https://github.com/Drink7/LeetCode/tree/main/0075-sort-colors/) | Medium |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Drink7/LeetCode/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
@@ -46,6 +47,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0015-3sum](https://github.com/Drink7/LeetCode/tree/main/0015-3sum/) | Medium |
 | [0016-3sum-closest](https://github.com/Drink7/LeetCode/tree/main/0016-3sum-closest/) | Medium |
 | [0018-4sum](https://github.com/Drink7/LeetCode/tree/main/0018-4sum/) | Medium |
+| [0042-trapping-rain-water](https://github.com/Drink7/LeetCode/tree/main/0042-trapping-rain-water/) | Hard |
 | [0075-sort-colors](https://github.com/Drink7/LeetCode/tree/main/0075-sort-colors/) | Medium |
 | [0125-valid-palindrome](https://github.com/Drink7/LeetCode/tree/main/0125-valid-palindrome/) | Easy |
 | [0167-two-sum-ii-input-array-is-sorted](https://github.com/Drink7/LeetCode/tree/main/0167-two-sum-ii-input-array-is-sorted/) | Medium |
@@ -81,6 +83,7 @@ Collection of LeetCode questions to ace the coding interview!
 ## Dynamic Programming
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0042-trapping-rain-water](https://github.com/Drink7/LeetCode/tree/main/0042-trapping-rain-water/) | Hard |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/Drink7/LeetCode/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
 ## String
 | Problem Name | Difficulty |
@@ -125,4 +128,12 @@ Collection of LeetCode questions to ace the coding interview!
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0011-container-with-most-water](https://github.com/Drink7/LeetCode/tree/main/0011-container-with-most-water/) | Medium |
+## Stack
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0042-trapping-rain-water](https://github.com/Drink7/LeetCode/tree/main/0042-trapping-rain-water/) | Hard |
+## Monotonic Stack
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0042-trapping-rain-water](https://github.com/Drink7/LeetCode/tree/main/0042-trapping-rain-water/) | Hard |
 <!---LeetCode Topics End-->
