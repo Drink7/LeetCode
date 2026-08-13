@@ -33,6 +33,7 @@ Collection of LeetCode questions to ace the coding interview!
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0001-two-sum](https://github.com/Drink7/LeetCode/tree/main/0001-two-sum/) | Easy |
+| [0003-longest-substring-without-repeating-characters](https://github.com/Drink7/LeetCode/tree/main/0003-longest-substring-without-repeating-characters/) | Medium |
 | [0036-valid-sudoku](https://github.com/Drink7/LeetCode/tree/main/0036-valid-sudoku/) | Medium |
 | [0049-group-anagrams](https://github.com/Drink7/LeetCode/tree/main/0049-group-anagrams/) | Medium |
 | [0128-longest-consecutive-sequence](https://github.com/Drink7/LeetCode/tree/main/0128-longest-consecutive-sequence/) | Medium |
@@ -88,6 +89,7 @@ Collection of LeetCode questions to ace the coding interview!
 ## String
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0003-longest-substring-without-repeating-characters](https://github.com/Drink7/LeetCode/tree/main/0003-longest-substring-without-repeating-characters/) | Medium |
 | [0020-valid-parentheses](https://github.com/Drink7/LeetCode/tree/main/0020-valid-parentheses/) | Easy |
 | [0049-group-anagrams](https://github.com/Drink7/LeetCode/tree/main/0049-group-anagrams/) | Medium |
 | [0125-valid-palindrome](https://github.com/Drink7/LeetCode/tree/main/0125-valid-palindrome/) | Easy |
@@ -142,4 +144,8 @@ Collection of LeetCode questions to ace the coding interview!
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0020-valid-parentheses](https://github.com/Drink7/LeetCode/tree/main/0020-valid-parentheses/) | Easy |
+## Sliding Window
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0003-longest-substring-without-repeating-characters](https://github.com/Drink7/LeetCode/tree/main/0003-longest-substring-without-repeating-characters/) | Medium |
 <!---LeetCode Topics End-->
