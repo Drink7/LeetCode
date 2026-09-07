@@ -182,4 +182,8 @@ Collection of LeetCode questions to ace the coding interview!
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0226-invert-binary-tree](https://github.com/Drink7/LeetCode/tree/main/0226-invert-binary-tree/) | Easy |
+## Boyer–Moore Majority Vote Algorithm
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0169-majority-element](https://github.com/Drink7/LeetCode/tree/main/0169-majority-element/) | Easy |
 <!---LeetCode Topics End-->
