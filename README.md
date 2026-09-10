@@ -192,4 +192,8 @@ Collection of LeetCode questions to ace the coding interview!
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0014-longest-common-prefix](https://github.com/Drink7/LeetCode/tree/main/0014-longest-common-prefix/) | Easy |
+## Math
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3870-count-commas-in-range](https://github.com/Drink7/LeetCode/tree/main/3870-count-commas-in-range/) | Easy |
 <!---LeetCode Topics End-->
