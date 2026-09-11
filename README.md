@@ -31,6 +31,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0977-squares-of-a-sorted-array](https://github.com/Drink7/LeetCode/tree/main/0977-squares-of-a-sorted-array/) | Easy |
 | [2149-rearrange-array-elements-by-sign](https://github.com/Drink7/LeetCode/tree/main/2149-rearrange-array-elements-by-sign/) | Medium |
 | [2161-partition-array-according-to-given-pivot](https://github.com/Drink7/LeetCode/tree/main/2161-partition-array-according-to-given-pivot/) | Medium |
+| [3483-unique-3-digit-even-numbers](https://github.com/Drink7/LeetCode/tree/main/3483-unique-3-digit-even-numbers/) | Easy |
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -45,6 +46,7 @@ Collection of LeetCode questions to ace the coding interview!
 | [0347-top-k-frequent-elements](https://github.com/Drink7/LeetCode/tree/main/0347-top-k-frequent-elements/) | Medium |
 | [0383-ransom-note](https://github.com/Drink7/LeetCode/tree/main/0383-ransom-note/) | Easy |
 | [0409-longest-palindrome](https://github.com/Drink7/LeetCode/tree/main/0409-longest-palindrome/) | Easy |
+| [3483-unique-3-digit-even-numbers](https://github.com/Drink7/LeetCode/tree/main/3483-unique-3-digit-even-numbers/) | Easy |
 ## Two Pointers
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -166,6 +168,7 @@ Collection of LeetCode questions to ace the coding interview!
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0021-merge-two-sorted-lists](https://github.com/Drink7/LeetCode/tree/main/0021-merge-two-sorted-lists/) | Easy |
+| [3483-unique-3-digit-even-numbers](https://github.com/Drink7/LeetCode/tree/main/3483-unique-3-digit-even-numbers/) | Easy |
 ## Tree
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -196,4 +199,8 @@ Collection of LeetCode questions to ace the coding interview!
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [3870-count-commas-in-range](https://github.com/Drink7/LeetCode/tree/main/3870-count-commas-in-range/) | Easy |
+## Enumeration
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3483-unique-3-digit-even-numbers](https://github.com/Drink7/LeetCode/tree/main/3483-unique-3-digit-even-numbers/) | Easy |
 <!---LeetCode Topics End-->
